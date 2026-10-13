@@ -1,0 +1,9 @@
+@portfolio_www host www.younesbenketira.com
+redir @portfolio_www https://younesbenketira.com{uri} permanent
+
+@portfolio host younesbenketira.com
+handle @portfolio {
+    root * /opt/younesbenketira-com/current
+    header Cache-Control "no-cache"
+    file_server
+}

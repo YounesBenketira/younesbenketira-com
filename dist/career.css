@@ -1,0 +1,52 @@
+#career .career-card{--story-ink:#292620;--story-muted:#595348;--story-accent:#785a2c;--story-line:#bba78666;overflow-wrap:anywhere}
+#career .eyebrow{font-size:.875rem;letter-spacing:.12em;gap:12px}
+#career .eyebrow>span{width:36px;height:36px;flex-shrink:0;font-size:.875rem}
+#career .career-heading{margin-bottom:28px}
+#career h2{font-size:clamp(2.75rem,4.4vw,3.75rem);margin:0}
+#career h2 a{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none}
+#career .company-name{text-decoration:underline;text-decoration-color:#bba786;text-decoration-thickness:1px;text-underline-offset:8px}
+#career .company-logo{display:block;flex-shrink:0;width:.9em;height:.9em;border-radius:.2em;object-fit:contain}
+#career h2 a:hover{color:var(--story-accent)}
+#career h2 a:hover .company-name{text-decoration-color:currentColor}
+#career .company-arrow{font-family:Arial,sans-serif;font-size:.38em;letter-spacing:0;margin-left:0;align-self:center;color:var(--story-accent)}
+#career .career-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+#career .career-meta p{margin:0;line-height:1.5}
+#career .career-role{font-size:1.0625rem;font-weight:600;color:var(--story-ink)}
+#career .career-details{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px}
+#career .career-dates{font-size:.9375rem;font-weight:500;color:var(--story-ink)}
+#career .career-location{display:inline-flex;align-items:center;gap:6px;padding-left:14px;border-left:1px solid #9b8d73;color:var(--story-muted);font-size:.875rem}
+#career .career-location svg{width:16px;height:16px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){
+  #career .career-heading{margin-bottom:24px}
+  #career h2{font-size:clamp(2.1rem,9vw,3.2rem)}
+  #career .eyebrow{font-size:.8125rem;letter-spacing:.08em}
+  #career .career-meta{gap:4px 14px;margin-top:16px}
+  #career .career-role{flex-basis:100%;font-size:1rem}
+  #career .career-dates,#career .career-location{font-size:.875rem}
+}
+
+#career .career-highlight{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;margin:32px 0}
+#career .highlight-copy h3{font-family:Georgia,serif;font-weight:400;font-size:clamp(1.25rem,2.2vw,1.75rem);line-height:1.3;letter-spacing:-.02em;margin:0;text-wrap:pretty;color:var(--story-ink)}
+#career .highlight-subtitle{font-size:1rem;font-weight:600;line-height:1.5;color:var(--story-accent);margin:10px 0 0}
+#career .highlight-points{font-size:1rem;line-height:1.65;color:var(--story-muted);margin:16px 0 0;padding-left:1.25em;max-width:58ch}
+#career .highlight-points li{padding-left:.25em}
+#career .highlight-points li+li{margin-top:10px}
+#career .highlight-points li::marker{color:var(--story-accent)}
+#career .highlight-points strong{font-weight:600;color:var(--story-ink)}
+@media(max-width:760px){
+  #career .career-highlight{margin:28px 0}
+  #career .highlight-copy{text-shadow:-1px -1px 1px #fffaf0,1px -1px 1px #fffaf0,-1px 1px 1px #fffaf0,1px 1px 1px #fffaf0,0 0 6px #fffaf0}
+}
+
+#career .mila-audio{display:grid;grid-template-columns:44px minmax(0,1fr) 140px;align-items:center;gap:16px;max-width:42rem;margin-top:24px;padding:16px;border:1px solid var(--story-line);border-radius:14px;background:#fffaf0;text-shadow:none}
+#career .mila-audio-play{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #bba786;border-radius:9px;background:#f0e4ce;color:#785a2c}
+#career .mila-audio-play:disabled{cursor:default;opacity:.65}
+#career .mila-audio-play svg{width:23px;height:23px;fill:currentColor}
+#career .mila-audio-label{display:flex;flex-direction:column;gap:4px;min-width:0}
+#career .mila-audio-title{font-size:1rem;font-weight:600;line-height:1.4;color:var(--story-ink)}
+#career .mila-audio-status{font-size:.8125rem;line-height:1.5;color:var(--story-muted)}
+#career .mila-audio-wave{display:block;width:100%;height:40px;fill:none;stroke:#b49a70;stroke-width:2.5;stroke-linecap:round}
+@media(max-width:480px){
+  #career .mila-audio{grid-template-columns:44px minmax(0,1fr);gap:12px;padding:12px}
+  #career .mila-audio-wave{grid-column:2;height:24px;max-width:140px}
+}
