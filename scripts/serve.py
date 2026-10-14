@@ -10,7 +10,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
         self.range_remaining = None
         path = Path(self.translate_path(self.path))
         requested = self.headers.get("Range")
-        is_video = path.suffix.lower() == ".mp4"
+        is_video = path.suffix.lower() in (".mp4", ".m4a")
         is_file = path.is_file()
         if not requested or not is_video or not is_file:
             return super().send_head()
@@ -28,7 +28,8 @@ class PreviewHandler(SimpleHTTPRequestHandler):
         self.range_remaining = end - start + 1
         stream.seek(start)
         self.send_response(206)
-        self.send_header("Content-Type", "video/mp4")
+        content_type = self.guess_type(str(path))
+        self.send_header("Content-Type", content_type)
         self.send_header("Accept-Ranges", "bytes")
         self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
         self.send_header("Content-Length", str(self.range_remaining))
