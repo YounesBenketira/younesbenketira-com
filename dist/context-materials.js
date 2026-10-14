@@ -68,21 +68,3 @@ export function contextMaterials(radius = { value: 300 }) {
     water: new THREE.MeshStandardMaterial({ color: '#347d93', roughness: .34, metalness: .22, side: THREE.DoubleSide }),
   };
 }
-
-export function cityNormals(material, reveal) {
-  const previous = material.onBeforeCompile;
-  material.defaultAttributeValues = { ...material.defaultAttributeValues, cityMask: [0] };
-  material.onBeforeCompile = shader => {
-    previous(shader);
-    shader.uniforms.cityReveal = reveal;
-    shader.vertexShader = 'attribute float cityMask; varying float citySurface;\n' + shader.vertexShader;
-    shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\ncitySurface = cityMask;');
-    shader.fragmentShader = 'uniform float cityReveal; varying float citySurface;\n' + shader.fragmentShader;
-    shader.fragmentShader = shader.fragmentShader.replace('#include <clipping_planes_fragment>', `
-      #include <clipping_planes_fragment>
-      float cityThreshold = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898,78.233))) * 43758.5453);
-      if (citySurface > .5 && cityReveal <= cityThreshold) discard;
-    `);
-  };
-  material.customProgramCacheKey = () => 'context-opening-city-reveal';
-}

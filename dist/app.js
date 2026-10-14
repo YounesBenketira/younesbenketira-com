@@ -6,7 +6,7 @@ import { createWorld, resizeWorld, positionCamera, updateWorld } from './world.j
 import { createSignature, frameSignature, updateSignature } from './signature.js';
 import { applyLimestone } from './surfaces.js';
 import { createJourney, heroPose } from './journey.js';
-import { loadSurroundings } from './surroundings.js';
+import { loadSurroundings, prepareSurroundings } from './surroundings.js';
 import { createScrollbar } from './scrollbar.js';
 
 const canvas = document.querySelector('#mosque');
@@ -76,6 +76,8 @@ function showSceneFallback(message) {
 
 async function start() {
   progress('code');
+  const prepared = prepareSurroundings();
+  prepared.catch(() => {});
   world = await createWorld(canvas);
   let viewportSize = '';
   const resize = (render = true) => {
@@ -104,7 +106,12 @@ async function start() {
     showSceneFallback('Reload to restore the mosque view.');
   });
   bindParallax();
-  await Promise.all([createSignature(world), applyLimestone(world)]);
+  const surroundings = loadSurroundings(world, prepared).catch((error) => {
+    document.querySelector('#notice').textContent = 'The surrounding city could not load. Reload to try again.';
+    progress('city');
+    console.warn('Surrounding city initialization failed:', error);
+  });
+  await Promise.all([createSignature(world), applyLimestone(world), surroundings]);
   progress('assets');
   await yieldToBrowser();
   if (document.querySelector('#experience').classList.contains('scene-failed')) return;
@@ -122,11 +129,6 @@ async function start() {
   await new Promise(requestAnimationFrame);
   window.dispatchEvent(new Event('scene-complete'));
   animate();
-  await new Promise(requestAnimationFrame);
-  loadSurroundings(world).catch((error) => {
-    document.querySelector('#notice').textContent = 'The surrounding city could not load. Reload to try again.';
-    console.warn('Surrounding city initialization failed:', error);
-  });
 }
 
 start().catch((error) => {

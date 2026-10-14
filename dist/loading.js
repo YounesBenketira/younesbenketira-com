@@ -1,5 +1,5 @@
-const stages = { code: 0, scene: 0, assets: 0, frame: 0 };
-const weights = { code: 10, scene: 40, assets: 20, frame: 30 };
+const stages = { code: 0, scene: 0, assets: 0, city: 0, frame: 0 };
+const weights = { code: 10, scene: 25, assets: 15, city: 30, frame: 20 };
 
 export function progress(stage, fraction = 1) {
   stages[stage] = Math.max(stages[stage], fraction);

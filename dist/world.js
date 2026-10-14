@@ -1,5 +1,4 @@
-import { openingVisibility, cityNormals } from './context-materials.js';
-import { updateCity } from './surroundings.js';
+import { openingVisibility } from './context-materials.js';
 import { progress, yieldToBrowser } from './loading.js';
 import * as THREE from './vendor/three.module.js';
 import { EffectComposer } from './vendor/addons/postprocessing/EffectComposer.js';
@@ -91,11 +90,9 @@ export async function createWorld(canvas) {
   progress('scene');
   await yieldToBrowser();
   const contextRadius = { value: 300 };
-  const cityReveal = { value: 0 };
   openingVisibility(composer.contextNormal, contextRadius);
-  cityNormals(composer.contextNormal, cityReveal);
   const lastCamera = new THREE.Matrix4();
-  return { renderer, composer, scene, camera, sun, ambient, sky, materials, birds, lastCamera, contextRadius, cityReveal, needsRender: true, lastHour: -1 };
+  return { renderer, composer, scene, camera, sun, ambient, sky, materials, birds, lastCamera, contextRadius, needsRender: true, lastHour: -1 };
 }
 
 export function resizeWorld(world, canvas) {
@@ -140,7 +137,6 @@ export function positionCamera(world, state) {
 export function updateWorld(world, state, elapsed = 0, reducedMotion = false) {
   positionCamera(world, state);
   updateJourneyGlow(world, state);
-  updateCity(world, elapsed, reducedMotion);
   if (world.contextRadius) {
     const portraitDistance = state.distance * 1.05 / world.camera.aspect;
     const openingRadius = Math.max(300, portraitDistance);

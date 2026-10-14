@@ -1,0 +1,8 @@
+#loading-screen{display:none}
+.js #loading-screen:not([hidden]){position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;color:#292620}
+.loading-indicator{display:grid;justify-items:center;gap:20px}
+.loading-ring{--progress:0;width:64px;height:64px;border-radius:50%;background:conic-gradient(#785a2c calc(var(--progress)*1%),#eae7e1 0);position:relative}
+.loading-ring::after{content:'';position:absolute;inset:3px;background:#fff;border-radius:50%}
+.loading-indicator output{font:400 14px/1.4 Arial,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.is-loading{overflow:hidden;background:#fff}
+.is-loading body> :not(#loading-screen){visibility:hidden}

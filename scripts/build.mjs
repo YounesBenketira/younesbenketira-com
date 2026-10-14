@@ -1,3 +1,4 @@
+import { buildStyles } from './build-styles.mjs';
 import { build } from 'esbuild';
 import sharp from 'sharp';
 import wawoff2 from 'wawoff2';
@@ -34,7 +35,9 @@ const htmlPath = path.join(root, 'index.html');
 const html = await readFile(htmlPath, 'utf8');
 const failure = "document.documentElement.classList.remove('is-loading');document.querySelector('#loading-screen').hidden=true;document.querySelector('#experience').classList.add('scene-failed');document.querySelector('#notice').textContent='The 3D view could not load. Reload to try again.'";
 const script = `<!-- app-bundle -->\n  <script type="module" src="./bundles/${path.basename(bootPath)}" onerror="${failure}"></script>\n  <!-- /app-bundle -->`;
-const updated = html.replace(/<!-- app-bundle -->[\s\S]*?<!-- \/app-bundle -->/, script);
+const styles = await buildStyles(root, output);
+const styled = html.replace(/<!-- styles-bundle -->[\s\S]*?<!-- \/styles-bundle -->/, styles);
+const updated = styled.replace(/<!-- app-bundle -->[\s\S]*?<!-- \/app-bundle -->/, script);
 await writeFile(htmlPath, updated);
 // Three.js shader templates retain trailing spaces when bundled.
 for (const name of await readdir(output)) {

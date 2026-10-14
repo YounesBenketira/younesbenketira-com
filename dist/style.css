@@ -104,12 +104,3 @@ h2{overflow-wrap:anywhere;font-family:Georgia,'Times New Roman',serif;font-weigh
 .hero-role{position:absolute;top:calc(31vh + 6.3vw);top:calc(31dvh + 6.3vw);left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 40px);margin:0;text-align:center;font-size:clamp(.6875rem,1.2vw,.875rem);line-height:1.7;text-transform:uppercase;color:#fff4dc;text-shadow:0 1px 3px #24475150}
 .js #experience:not(.scene-failed) .hero-role{width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:760px) and (orientation:portrait){.hero-role{top:calc(31vh + 17.6vw);top:calc(31dvh + 17.6vw)}}
-
-#loading-screen{display:none}
-.js #loading-screen:not([hidden]){position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;color:#292620}
-.loading-indicator{display:grid;justify-items:center;gap:20px}
-.loading-ring{--progress:0;width:64px;height:64px;border-radius:50%;background:conic-gradient(#785a2c calc(var(--progress)*1%),#eae7e1 0);position:relative}
-.loading-ring::after{content:'';position:absolute;inset:3px;background:#fff;border-radius:50%}
-.loading-indicator output{font:400 14px/1.4 Arial,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.is-loading{overflow:hidden;background:#fff}
-.is-loading body> :not(#loading-screen){visibility:hidden}

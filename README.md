@@ -24,7 +24,7 @@ The Mila Voice audio demo features GPT-Live as the simulated customer. The Midni
 
 ## Loading and performance
 
-The white loading screen reports weighted startup stages: scene code, mosque geometry, textures/font, and the first rendered mosque frame. City loading starts after the opening view is revealed and does not contribute to the loading percentage. The percentage is completed startup work, not a download-byte counter. Failures release the screen and keep the portfolio readable. The city fades in over 0.8 seconds when ready; reduced-motion visitors get an immediate reveal. A failed city download leaves the mosque usable.
+The white loading screen reports weighted startup stages: scene code, mosque geometry, textures/font, and the first rendered mosque frame. City loading is included in the loading percentage. The loading screen stays up until the city, mosque, and first complete rendered frame are ready. The percentage is completed startup work, not a download-byte counter. Failures release the screen and keep the portfolio readable. There is no city fade or background city insertion during scrolling. A failed city download releases the loader and leaves the mosque usable.
 
 `npm run build` produces hashed ES module bundles, a dedicated city geometry worker, WebP images, and the original font compressed losslessly to WOFF2. Original images and the font remain build inputs. The worker transfers typed geometry buffers instead of blocking the page while parsing and building the city. Shader compilation uses the same offscreen render target as the live scene.
 
@@ -48,7 +48,7 @@ Lighthouse numbers are lab results, not field Core Web Vitals or real-device gua
 
 Verified loader recovery for blocked bootstrap, scene bundle, worker, and texture; WebGL failure; no-JavaScript fallback; scrolling to contact; and no horizontal overflow at 320, 360, 390, 412, 768, 1024, 1280, 1440, and 1920 px. Custom agent-lint and `git diff --check` pass. Full shared quality validation is blocked by the existing stale affected path `dist/mila-preview.js`; it is not a passed gate. Hosting cache rules are prepared locally and have not been applied to production.
 
-### Deferred city follow-up
+### Deferred city experiment (superseded)
 
 The final version starts the city worker after `scene-complete`, so map data no longer competes with the opening view. City geometry is attached only after both opaque and fading shader variants are prepared. The fade also updates the ambient-occlusion mask, and every fade frame requests a render even when the camera is idle.
 
@@ -57,3 +57,13 @@ Three further Lighthouse runs under the same conditions all scored **71**. Media
 Phone and desktop checks held the map request pending, confirmed the loader reached 100% and scrolling worked before releasing it, then verified city appearance. Further checks covered failed map requests and reduced-motion reveal. `scene-ready` now measures the usable mosque, `city-ready` the attached city, and `city-visible` the completed fade; these are intentionally separate milestones.
 
 The final source-only custom lint and diff checks pass. Publication remains blocked: full quality validation still references obsolete generated files, and custom lint reports nested expressions in the generated minified vendor bundles. These are not recorded as passing checks or silently exempted.
+
+### Restore complete-scene loading and prevent stale styles
+
+The deferred-city experiment was reverted at the user's request. The city worker starts alongside mosque initialization, and the loading screen stays visible through city construction and shader preparation. The loading percentage includes city work again. There is no deferred city fade during scrolling.
+
+Production served the unversioned stylesheet with `Cache-Control: max-age=14400`, allowing a returning browser to retain a stylesheet from before the loader existed. The build now combines styles under a content-hashed URL, and embeds the small loading styles into the HTML. CSS image and font paths are rebased for the bundle directory. This avoids relying on a manual hard refresh for new styles. A fresh-production visit already showed the loader; the cached-styles explanation applies to returning visits, not every browser.
+
+Verified on 390px and 1440px viewports: held the city request pending and confirmed the white loader remains visible; after release, `city-ready` precedes `scene-ready` and the percentage reaches 100%. Scrolling starts only with the full scene attached. The existing camera path and chapter pacing are unchanged.
+
+Final complete-scene Lighthouse runs: 67, 69, 69 (median **69**). Median FCP **1.503 s**, LCP **3.507 s**, TBT **0.850 s**; transfer **2.531 MB**. Reports are in `benchmarks/2026-10-14/complete-scene/`. A 4,500px constant-speed scroll gesture after loading had no frame gaps above 100ms at either 390px or 1440px width in the lab browser. This does not establish frame pacing on every real device.

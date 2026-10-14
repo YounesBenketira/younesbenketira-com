@@ -10,11 +10,17 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f5f1e8'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='40' font-family='serif' font-style='italic' fill='%232c6355'%3EY%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="./fonts/GreatVibes-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./textures/ivory-limestone.webp" as="image" crossorigin>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./career.css?v=mila-demo-2">
-  <link rel="stylesheet" href="./mila-player.css?v=midnight-inline-1">
-  <link rel="stylesheet" href="./project.css?v=engineering-story-1">
-  <link rel="stylesheet" href="./work.css?v=no-story-1">
+  <!-- styles-bundle -->
+  <style id="loading-styles">#loading-screen{display:none}
+.js #loading-screen:not([hidden]){position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;color:#292620}
+.loading-indicator{display:grid;justify-items:center;gap:20px}
+.loading-ring{--progress:0;width:64px;height:64px;border-radius:50%;background:conic-gradient(#785a2c calc(var(--progress)*1%),#eae7e1 0);position:relative}
+.loading-ring::after{content:'';position:absolute;inset:3px;background:#fff;border-radius:50%}
+.loading-indicator output{font:400 14px/1.4 Arial,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.is-loading{overflow:hidden;background:#fff}
+.is-loading body> :not(#loading-screen){visibility:hidden}</style>
+  <link rel="stylesheet" href="./bundles/styles-ff1b557d47382347.css">
+  <!-- /styles-bundle -->
 </head>
 <body data-chapter="0">
   <div id="loading-screen" aria-label="Loading portfolio">
@@ -115,7 +121,7 @@
   <p id="notice" role="status"></p>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
   <!-- app-bundle -->
-  <script type="module" src="./bundles/boot-7TC3UG6X.js" onerror="document.documentElement.classList.remove('is-loading');document.querySelector('#loading-screen').hidden=true;document.querySelector('#experience').classList.add('scene-failed');document.querySelector('#notice').textContent='The 3D view could not load. Reload to try again.'"></script>
+  <script type="module" src="./bundles/boot-V57XCLWH.js" onerror="document.documentElement.classList.remove('is-loading');document.querySelector('#loading-screen').hidden=true;document.querySelector('#experience').classList.add('scene-failed');document.querySelector('#notice').textContent='The 3D view could not load. Reload to try again.'"></script>
   <!-- /app-bundle -->
   <script type="module" src="./mila-player.js?v=midnight-inline-1"></script>
 </body>
