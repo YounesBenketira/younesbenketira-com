@@ -1,0 +1,65 @@
+[
+  {
+    "failure": "boot",
+    "notice": "The 3D view could not load. Reload to try again."
+  },
+  {
+    "failure": "app",
+    "notice": "The 3D view could not load. Reload to try again."
+  },
+  {
+    "failure": "worker",
+    "notice": "The surrounding city could not load. Reload to try again."
+  },
+  {
+    "failure": "texture",
+    "notice": ""
+  },
+  {
+    "failure": "webgl",
+    "notice": "The mosque view needs WebGL 2. Try enabling hardware acceleration."
+  },
+  {
+    "failure": "none",
+    "notice": ""
+  },
+  {
+    "width": 320,
+    "overflow": false
+  },
+  {
+    "width": 360,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "width": 412,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "width": 1024,
+    "overflow": false
+  },
+  {
+    "width": 1280,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "noJavaScript": "readable"
+  }
+]

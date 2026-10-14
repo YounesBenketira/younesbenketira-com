@@ -61,7 +61,7 @@ function textureMaterial(material, texture, scale, paving = false) {
 
 export async function applyLimestone(world) {
   try {
-    const texture = await new THREE.TextureLoader().loadAsync('./textures/ivory-limestone.png');
+    const texture = await new THREE.TextureLoader().loadAsync('./textures/ivory-limestone.webp');
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.wrapS = THREE.MirroredRepeatWrapping;
     texture.wrapT = THREE.MirroredRepeatWrapping;

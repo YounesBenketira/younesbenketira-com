@@ -1,0 +1,14 @@
+{
+  "name": "younesbenketira-com",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python scripts/serve.py"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "sharp": "0.35.5",
+    "wawoff2": "2.0.1"
+  }
+}

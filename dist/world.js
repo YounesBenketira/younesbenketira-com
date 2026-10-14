@@ -1,3 +1,6 @@
+import { openingVisibility, cityNormals } from './context-materials.js';
+import { updateCity } from './surroundings.js';
+import { progress, yieldToBrowser } from './loading.js';
 import * as THREE from './vendor/three.module.js';
 import { EffectComposer } from './vendor/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from './vendor/addons/postprocessing/RenderPass.js';
@@ -53,7 +56,7 @@ function createPostProcessing(renderer, scene, camera) {
   return composer;
 }
 
-export function createWorld(canvas) {
+export async function createWorld(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.shadowMap.enabled = true;
@@ -65,21 +68,34 @@ export function createWorld(canvas) {
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog('#dce0df', 900, 4800);
   const camera = new THREE.PerspectiveCamera(38, 1, .4, 10000);
+  await yieldToBrowser();
   const materials = createMaterials();
+  progress('scene', .2);
+  await yieldToBrowser();
   const mosque = createArchitecture(materials);
   mosque.traverse((object) => {
     if (object.isMesh) object.layers.enable(1);
   });
+  progress('scene', .5);
+  await yieldToBrowser();
   const landscape = createLandscape(materials);
   scene.add(mosque, landscape);
   addDetails(scene, materials);
+  progress('scene', .7);
+  await yieldToBrowser();
   const sky = createEnvironment(scene, renderer);
   const { sun, ambient } = lights(scene);
   instanceStaticMeshes(scene);
   const birds = createBirds(scene);
   const composer = createPostProcessing(renderer, scene, camera);
+  progress('scene');
+  await yieldToBrowser();
+  const contextRadius = { value: 300 };
+  const cityReveal = { value: 0 };
+  openingVisibility(composer.contextNormal, contextRadius);
+  cityNormals(composer.contextNormal, cityReveal);
   const lastCamera = new THREE.Matrix4();
-  return { renderer, composer, scene, camera, sun, ambient, sky, materials, birds, lastCamera, needsRender: true, lastHour: -1 };
+  return { renderer, composer, scene, camera, sun, ambient, sky, materials, birds, lastCamera, contextRadius, cityReveal, needsRender: true, lastHour: -1 };
 }
 
 export function resizeWorld(world, canvas) {
@@ -124,6 +140,7 @@ export function positionCamera(world, state) {
 export function updateWorld(world, state, elapsed = 0, reducedMotion = false) {
   positionCamera(world, state);
   updateJourneyGlow(world, state);
+  updateCity(world, elapsed, reducedMotion);
   if (world.contextRadius) {
     const portraitDistance = state.distance * 1.05 / world.camera.aspect;
     const openingRadius = Math.max(300, portraitDistance);

@@ -1,3 +1,6 @@
+import { preparePrograms } from './warmup.js';
+import { updateTimeOfDay } from './daylight.js';
+import { progress, yieldToBrowser } from './loading.js';
 import * as THREE from './vendor/three.module.js';
 import { createWorld, resizeWorld, positionCamera, updateWorld } from './world.js';
 import { createSignature, frameSignature, updateSignature } from './signature.js';
@@ -68,12 +71,14 @@ function showSceneFallback(message) {
   contact.style.removeProperty('opacity');
   contact.style.removeProperty('visibility');
   document.querySelector('#notice').textContent = message;
+  window.dispatchEvent(new Event('scene-failed'));
 }
 
 async function start() {
-  world = createWorld(canvas);
+  progress('code');
+  world = await createWorld(canvas);
   let viewportSize = '';
-  const resize = () => {
+  const resize = (render = true) => {
     if (document.querySelector('#experience').classList.contains('scene-failed')) return;
     const nextSize = `${canvas.clientWidth}:${canvas.clientHeight}`;
     if (nextSize === viewportSize) return;
@@ -92,24 +97,36 @@ async function start() {
     frameSignature(world);
     journey.update(world, state, reducedMotion.matches);
     updateSignature(world, state.heroVisibility);
-    updateWorld(world, state);
+    if (render) updateWorld(world, state);
   };
   canvas.addEventListener('webglcontextlost', (event) => {
     event.preventDefault();
     showSceneFallback('Reload to restore the mosque view.');
   });
   bindParallax();
-  const surroundings = loadSurroundings(world).catch((error) => {
+  await Promise.all([createSignature(world), applyLimestone(world)]);
+  progress('assets');
+  await yieldToBrowser();
+  if (document.querySelector('#experience').classList.contains('scene-failed')) return;
+  resize(false);
+  updateTimeOfDay(world, state.timeOfDay);
+  await preparePrograms(world);
+  progress('frame', .5);
+  await yieldToBrowser();
+  updateWorld(world, state);
+  new ResizeObserver(() => resize()).observe(canvas);
+  document.querySelector('#experience').classList.add('scene-ready');
+  document.querySelector('#scene').classList.add('is-ready');
+  performance.mark('scene-ready');
+  progress('frame');
+  await new Promise(requestAnimationFrame);
+  window.dispatchEvent(new Event('scene-complete'));
+  animate();
+  await new Promise(requestAnimationFrame);
+  loadSurroundings(world).catch((error) => {
     document.querySelector('#notice').textContent = 'The surrounding city could not load. Reload to try again.';
     console.warn('Surrounding city initialization failed:', error);
   });
-  await Promise.all([createSignature(world), applyLimestone(world), surroundings]);
-  if (document.querySelector('#experience').classList.contains('scene-failed')) return;
-  resize();
-  new ResizeObserver(resize).observe(canvas);
-  document.querySelector('#experience').classList.add('scene-ready');
-  document.querySelector('#scene').classList.add('is-ready');
-  animate();
 }
 
 start().catch((error) => {
