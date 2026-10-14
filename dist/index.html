@@ -10,7 +10,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f5f1e8'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='40' font-family='serif' font-style='italic' fill='%232c6355'%3EY%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="./fonts/GreatVibes-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./career.css?v=mila-player-1">
+  <link rel="stylesheet" href="./career.css?v=mila-demo-2">
   <link rel="stylesheet" href="./project.css?v=engineering-story-1">
   <link rel="stylesheet" href="./work.css?v=no-story-1">
 </head>
@@ -41,9 +41,11 @@
                   <li>Handled <strong>58,946 inbound customer service calls</strong> in August 2026 &mdash; <strong>88.12% of all inbound customer service calls</strong>.</li>
                 </ul>
                 <div class="mila-audio" role="group" aria-label="Mila Voice audio demo">
-                  <button class="mila-audio-play" type="button" disabled aria-label="Play Mila Voice demo, recording not available"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 11 7-11 7Z"/></svg></button>
-                  <div class="mila-audio-label"><span class="mila-audio-title">Mila Voice in action</span><span class="mila-audio-status">Recording not available</span></div>
-                  <svg class="mila-audio-wave" viewBox="0 0 160 40" aria-hidden="true" focusable="false"><path d="M3 17v6m7-11v16m7-22v28m7-25v22m7-17v12m7-23v34m7-28v22m7-15v8m7-17v26m7-32v38m7-29v20m7-15v10m7-18v26m7-20v14m7-25v36m7-26v16m7-11v6m7-16v26m7-20v14m7-10v6m7-14v22m7-16v10m7-8v6"/></svg>
+                  <div class="mila-audio-label"><span class="mila-audio-title" id="mila-demo-title">Mila Voice in action</span><span class="mila-audio-status" id="mila-demo-description">GPT-Live as the customer</span></div>
+                  <audio class="mila-audio-player" controls preload="none" aria-labelledby="mila-demo-title" aria-describedby="mila-demo-description">
+                    <source src="./audio/mila-booking-call.m4a" type="audio/mp4">
+                    <a href="./audio/mila-booking-call.m4a">Download the Mila Voice demo</a>
+                  </audio>
                 </div>
               </div>
             </section>

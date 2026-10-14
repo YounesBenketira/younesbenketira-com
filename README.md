@@ -20,4 +20,4 @@ Cloudflare must route both hostnames to the public tunnel and its `http://127.0.
 
 Edit `dist/index.html` for portfolio copy. Styles live in `dist/*.css`; scene modules in `dist/*.js`. See `TEXTURES.md` for the generated limestone asset and `dist/data/SOURCES.html` for map attribution. Third-party licenses are retained with their assets.
 
-The site has no video playback. The Mila Voice demo control remains disabled until a recording is provided.
+The Mila Voice audio demo features GPT-Live as the simulated customer. Native audio controls support playback, pause, seeking, and volume. Audio loads only when requested; there is no autoplay.
