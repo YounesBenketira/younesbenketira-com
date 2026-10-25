@@ -16,6 +16,8 @@ Release files belong under `/opt/younesbenketira-com/releases/<commit>/`. The `c
 
 Cloudflare must route both hostnames to the public tunnel and its `http://127.0.0.1:8080` origin. DNS activation is separate from installing the site on the VPS. Do not change unrelated routes or mail records.
 
+`/resume` and `/resume/` download `dist/Younes-Benketira-Resume.pdf` with an attachment header. To update the resume, replace that PDF and deploy it with `deployment/portfolio.caddy`.
+
 ## Content and assets
 
 Edit `dist/index.html` for portfolio copy. Styles live in `dist/*.css`; scene modules in `dist/*.js`. See `TEXTURES.md` for the generated limestone asset and `dist/data/SOURCES.html` for map attribution. Third-party licenses are retained with their assets.

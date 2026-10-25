@@ -8,5 +8,11 @@ handle @portfolio {
     header @revalidate Cache-Control "no-cache"
     @bundles path /bundles/*
     header @bundles Cache-Control "public, max-age=31536000, immutable"
+    @resume path /resume /resume/
+    handle @resume {
+        header Content-Disposition "attachment; filename=Younes-Benketira-Resume.pdf"
+        rewrite * /Younes-Benketira-Resume.pdf
+        file_server
+    }
     file_server
 }
