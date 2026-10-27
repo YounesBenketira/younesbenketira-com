@@ -12,6 +12,7 @@ html{scroll-behavior:smooth;scroll-padding-top:0;scrollbar-width:thin;scrollbar-
 .page-scroll::-moz-range-thumb{width:6px;height:var(--thumb-size,60px);border:0;border-radius:999px;background:#fff}
 .page-scroll:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
 body{margin:0;overflow-x:clip}
+.blog-entry{position:absolute;top:24px;right:28px;z-index:8;display:inline-flex;align-items:center;gap:16px;min-height:44px;padding:10px 20px;border:1px solid #d5c6a8;border-radius:30px;background:#fffaf0;color:var(--accent);font-size:.875rem}
 a{color:inherit;text-decoration:none}
 a:focus-visible{outline:3px solid #a6752c;outline-offset:6px}
 #scene{position:fixed;inset:0;z-index:-1;width:100vw;height:100vh;height:100dvh;pointer-events:none;opacity:0}

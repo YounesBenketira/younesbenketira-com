@@ -1,5 +1,42 @@
 # Younes Benketira
 
+## Blog layout (October 27, 2026)
+
+Blog illustrations use a subtle 1px bronze border at 15% opacity.
+
+The blog layout takes its card spacing and article hierarchy from Linear's
+https://linear.app/now (reviewed October 27, 2026). It keeps ivory (#f9f6ec),
+warm charcoal (#292620), bronze (#785a2c), and the local Great Vibes signature.
+Blog headings use the existing system sans-serif stack for the selected style.
+The index shows a three-column grid in a 1280px container, with 48px column gaps,
+72px row gaps, 16:9 illustrations above each title, and dates 16px below the description, without stretching metadata to the card bottom. Entire cards are links, with 16px padding, a
+12px radius, and a bronze arrow beside the date that appears on hover or keyboard
+focus. There is no card background or shadow highlight. The arrow reserves space
+to avoid layout shift, stays visible on touch devices, and respects reduced motion. Author names, reading times,
+and Layout preview labels are omitted from the cards.
+At 1100px it becomes two columns; at 700px it becomes one, with 20px side gutters.
+Blog pages have no top navigation bar. The index centers a large linked signature
+(48-88px) above a centered Blog label, with no flex gap and a compact signature
+line height of 1.15. There is 64px from this group to the article list. Article
+pages begin with their centered title. The homepage Blog button is positioned inside the hero and scrolls away with
+it. The final contact card also includes a Blog link alongside its other links.
+
+Article pages center a 720px title group above a wider 960px illustration.
+Article titles have no subtitle; summaries remain on the blog listing.
+Only the article date is centered below the illustration.
+The 680px reading column and its section headings stay left-aligned.
+A subtle All articles link sits at the top left with compact padding and
+returns to /blog/; category labels
+are omitted, and the footer keeps its return link. The title stays at 30-40px, body
+text at 17px with 1.8 line height. The dummy article and its illustration are
+excluded from the release; the list is empty until real posts are added.
+Blog routes use plain HTML and CSS without the Three.js scene.
+
+The real articles should emphasize illustrations, animation, and interactive
+examples, supported by short text sections. Choose visuals that explain each
+idea. Keep reading and core meaning available with reduced motion and without
+JavaScript.
+
 The fixed Three.js canvas fills the viewport. The hero keeps X 151.4 degrees, Y -7.3 degrees and distance 310, with the prayer hall centered. Mouse movement adds at most 2.4 scene units horizontally and 1.3 vertically in the hero only. Motion eases toward the pointer and resets on leave or blur. Touch stays static; reduced motion also disables parallax.
 
 A natural vertical page provides four chapters: introduction, FlightHub at the tower base, CoachDiff along the ascent, and contact at the crown. Chapter positions are measured from the DOM. The hero occupies 260svh to slow the approach without intercepting scrolling; its title and scroll cue remain within the first viewport. The camera rises 65 scene units and follows a polar arc around (-5, 0, -10), decreasing its azimuth from the hero to the base. This passes around the left side as seen from the opening camera, rather than crossing the roofs. The radius interpolates between the hero and base distances, with an extra 90 scene units at mid-orbit. A squared sine envelope eases that outward offset to zero at both endpoints. The flight looks toward the mosque at (-10, 12, -15), opens its field of view by up to 10 degrees, then descends at the tower base.
