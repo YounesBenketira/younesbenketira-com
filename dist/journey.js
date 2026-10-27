@@ -16,7 +16,7 @@ export function heroPose(state, aspect) {
   const y = Math.max(clearance, focus.y + Math.sin(state.pitch) * distance);
   const z = focus.z + Math.cos(yaw) * radius;
   const eye = new THREE.Vector3(x, y, z);
-  return { eye, target: focus, fov: 30 };
+  return { eye, target: focus, fov: THREE.MathUtils.lerp(34, 30, portrait) };
 }
 
 function chapterPose(index, aspect) {

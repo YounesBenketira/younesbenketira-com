@@ -1,5 +1,30 @@
-#career .chapter-card,#project .chapter-card{background:none;border:0;border-radius:0;box-shadow:none}
+#career .chapter-card,#project .chapter-card{padding:clamp(20px,2.4vw,36px);background:var(--paper);border:1px solid #d5c6a8;border-radius:20px;box-shadow:0 16px 48px #33291920}
+#career .career-highlight,#project .project-achievement{max-width:none;margin:18px 0 0;padding:clamp(16px,2vw,24px);background:#f2ecdf;border:1px solid #d5c6a8;border-radius:14px;text-shadow:none}
+#career .career-heading,#project .project-heading{margin-bottom:20px}
+#career .highlight-copy{min-width:0;text-shadow:none}
 @media(max-width:760px){
-  #career .chapter-card,#project .chapter-card{padding:0}
-  #career .career-heading,#project .project-heading,#career .eyebrow,#project .eyebrow{text-shadow:-1px -1px 1px #fffaf0,1px -1px 1px #fffaf0,-1px 1px 1px #fffaf0,1px 1px 1px #fffaf0,0 0 6px #fffaf0}
+  #career .chapter-frame,#project .chapter-frame{padding:22svh 16px 110px}
+  #career .chapter-card,#project .chapter-card{font-size:clamp(.75rem,3.2vw,.9375rem);padding:1.25em;border-radius:16px}
+  #career .career-heading,#project .project-heading{margin-bottom:1.25em;text-shadow:none}
+  #career .eyebrow,#project .eyebrow{font-size:.85em;gap:.8em;margin-bottom:1.25em;text-shadow:none}
+  #career .eyebrow>span,#project .eyebrow>span{width:2.25em;height:2.25em;font-size:1em}
+  #career h2,#project h2{font-size:2.4em}
+  #career h2 a,#project h2 a{gap:.3em}
+  #career .career-meta{margin-top:1em;gap:.4em .8em}
+  #career .career-role,#project .project-role{font-size:1.05em}
+  #career .career-dates,#career .career-location{font-size:.9em}
+  #career .career-details{gap:.5em .8em}
+  #career .career-location{gap:.35em;padding-left:.8em}
+  #career .career-location svg{width:1em;height:1em}
+  #project .project-role{margin-top:1em}
+  #project .project-summary{font-size:1em;line-height:1.55;margin-top:1em}
+  #career .career-highlight,#project .project-achievement{margin:1em 0 0;padding:1.1em;border-radius:12px}
+  #career .highlight-copy h3,#project .project-achievement h3{font-size:1.3em;line-height:1.3}
+  #career .highlight-subtitle{font-size:1em;margin-top:.65em}
+  #career .highlight-points{font-size:1em;line-height:1.55;margin-top:.85em}
+  #career .highlight-points li+li{margin-top:.65em}
+  #project .project-achievement p{font-size:1em;line-height:1.55;margin-top:.75em}
+  #career .mila-audio.mila-inline{padding:12px;gap:4px 8px}
+  #career .mila-audio.mila-inline .mila-audio-title{font-size:1em}
+  #career .mila-audio.mila-inline .mila-audio-status{font-size:.85em}
 }

@@ -391,3 +391,20 @@ The new copy names YOLO champion detection, SAM 3.1, OpenCV HUD analysis and Rio
 The reasoning description uses sequential minute-by-minute analysis and a persistent factual ledger, with structured output validation, checkpoint recovery and final synthesis. It does not describe overlapping frame windows. The company's existing links and the rest of the portfolio are unchanged.
 
 The user replaced the model-specific extraction paragraph with: "Combined computer vision models, HUD analysis, and game APIs to extract player positions, ability usage, health, and minion observations from replay footage." This supersedes the earlier public model-name list. No model-training or custom-trained LLM claim is made.
+
+
+## Responsive work cards, 2026-10-27
+
+The desktop opening camera now uses a 34-degree field of view, easing to the existing 30-degree portrait view. The landscape signature spans 84% rather than 94% of the camera plane. This gives the opening scene and name more breathing room. Tower chapter camera poses remain unchanged.
+
+FlightHub and CoachDiff now have opaque ivory outer cards, with a separate warm cream surface, border, and rounded corners for each highlight or achievement. These surfaces replace the final stylesheet that removed card backgrounds. On phones, the work card type scale uses `clamp(.75rem, 3.2vw, .9375rem)`; headings, copy, metadata, and demo labels use relative sizes. Padding and gaps follow that scale. Text remains in document flow and can extend vertically.
+
+
+## Mobile hero contrast, 2026-10-27
+
+The portrait signature uses white lettering with a dark warm glow and a subtle dark outline so it stays visible against clouds, sky, and stone. At the user's request, the mobile name fills more of the hero: the portrait font increases from 240 to 280 texture pixels and its plane spans 102% rather than 94% of the viewport, with the actual lettering capped inside the texture to keep side margins. The occluded pass retains the white portrait lettering and dark glow across the minaret. Desktop retains its ivory lettering and bronze occluded strokes. The HTML fallback uses larger white portrait text with a dark glow.
+
+
+## Deployment exception, 2026-10-27
+
+The user approved deploying the desktop framing, responsive work cards, and larger white mobile signature with dark glow without full agent quality validation. This exception applies only to this portfolio release. Build, syntax, custom lint, and diff checks passed; the full quality gate remains incomplete, with generated-bundle findings and missing or failing analyzers. This is not a passing quality result or a permanent rule change.

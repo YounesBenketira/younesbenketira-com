@@ -6,16 +6,21 @@ function signatureTexture(portrait = false) {
   surface.width = portrait ? 1024 : 2048;
   surface.height = portrait ? 768 : 384;
   const context = surface.getContext('2d');
-  context.font = '240px "Great Vibes", cursive';
+  context.font = `${portrait ? 280 : 240}px "Great Vibes", cursive`;
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.fillStyle = '#fff4dc';
-  context.shadowColor = '#24475150';
-  context.shadowBlur = 3;
+  context.fillStyle = portrait ? '#ffffff' : '#fff4dc';
+  context.shadowColor = portrait ? '#241e16d9' : '#24475150';
+  context.shadowBlur = portrait ? 18 : 3;
   context.shadowOffsetY = 2;
   if (portrait) {
-    context.fillText('Younes', 512, 230, 960);
-    context.fillText('Benketira', 512, 520, 960);
+    context.strokeStyle = '#30271e99';
+    context.lineWidth = 3;
+    context.lineJoin = 'round';
+    context.strokeText('Younes', 512, 230, 920);
+    context.strokeText('Benketira', 512, 520, 920);
+    context.fillText('Younes', 512, 230, 920);
+    context.fillText('Benketira', 512, 520, 920);
   } else {
     context.fillText('Younes Benketira', 1024, 210, 1920);
   }
@@ -61,7 +66,8 @@ export function frameSignature(world) {
   const texture = world.signatureTextures[portrait ? 'portrait' : 'landscape'];
   world.signature.material.map = texture;
   world.signatureOccluded.material.map = texture;
-  const span = !portrait && camera.aspect < 1 ? 1.12 : .94;
+  world.signatureOccluded.material.color.set(portrait ? '#ffffff' : '#785a2c');
+  const span = portrait ? 1.02 : (camera.aspect < 1 ? 1.12 : .84);
   const width = height * camera.aspect * span;
   const offset = new THREE.Vector3(0, height * .19, -depth);
   offset.applyQuaternion(camera.quaternion);
