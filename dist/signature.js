@@ -10,8 +10,8 @@ function signatureTexture(portrait = false) {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context.fillStyle = portrait ? '#ffffff' : '#fff4dc';
-  context.shadowColor = portrait ? '#241e16d9' : '#24475150';
-  context.shadowBlur = portrait ? 18 : 3;
+  context.shadowColor = '#241e16d9';
+  context.shadowBlur = 18;
   context.shadowOffsetY = 2;
   if (portrait) {
     context.strokeStyle = '#30271e99';

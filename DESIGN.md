@@ -408,3 +408,8 @@ The portrait signature uses white lettering with a dark warm glow and a subtle d
 ## Deployment exception, 2026-10-27
 
 The user approved deploying the desktop framing, responsive work cards, and larger white mobile signature with dark glow without full agent quality validation. This exception applies only to this portfolio release. Build, syntax, custom lint, and diff checks passed; the full quality gate remains incomplete, with generated-bundle findings and missing or failing analyzers. This is not a passing quality result or a permanent rule change.
+
+
+## Desktop hero glow, 2026-10-27
+
+The desktop signature now uses the same dark warm glow as the approved mobile signature. Its ivory lettering, size, framing, and bronze occluded strokes remain. The HTML fallback uses the same shadow. This follows the approved landing-page work and the user's instruction to deploy these website changes without full quality validation; that waiver does not mark the incomplete gate as passed or change tooling policy.

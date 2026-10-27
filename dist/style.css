@@ -105,4 +105,5 @@ h2{overflow-wrap:anywhere;font-family:Georgia,'Times New Roman',serif;font-weigh
 .js #experience:not(.scene-failed) .hero-role{width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:760px) and (orientation:portrait){.hero-role{top:calc(31vh + 17.6vw);top:calc(31dvh + 17.6vw)}}
 
+#title,.hero-role{text-shadow:0 2px 5px #241e16d9,0 0 14px #241e16b3}
 @media(max-width:760px) and (orientation:portrait){#title,.hero-role{color:#fff;text-shadow:0 2px 5px #241e16d9,0 0 14px #241e16b3}#title{top:22svh;font-size:clamp(3.5rem,19vw,8rem);line-height:1.15}.hero-role{top:calc(22svh + 45vw)}}
