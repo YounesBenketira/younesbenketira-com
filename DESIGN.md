@@ -413,3 +413,8 @@ The user approved deploying the desktop framing, responsive work cards, and larg
 ## Desktop hero glow, 2026-10-27
 
 The desktop signature now uses the same dark warm glow as the approved mobile signature. Its ivory lettering, size, framing, and bronze occluded strokes remain. The HTML fallback uses the same shadow. This follows the approved landing-page work and the user's instruction to deploy these website changes without full quality validation; that waiver does not mark the incomplete gate as passed or change tooling policy.
+
+
+## Portfolio visit analytics, 2026-10-27
+
+PostHog uses a separate free organization and project 691928. The bundled browser SDK starts after document load, outside the scene startup path, and only on the public portfolio hostnames. It records one pageview per page load, pageleave, and bounded chapter, outbound-link, and audio engagement events. No session replay or automatic interaction capture is enabled. The integration does not change the visible page. Browser configuration comes from ignored `.env.local` values at build time.

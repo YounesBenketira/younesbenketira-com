@@ -69,3 +69,14 @@ Production served the unversioned stylesheet with `Cache-Control: max-age=14400`
 Verified on 390px and 1440px viewports: held the city request pending and confirmed the white loader remains visible; after release, `city-ready` precedes `scene-ready` and the percentage reaches 100%. Scrolling starts only with the full scene attached. The existing camera path and chapter pacing are unchanged.
 
 Final complete-scene Lighthouse runs: 67, 69, 69 (median **69**). Median FCP **1.503 s**, LCP **3.507 s**, TBT **0.850 s**; transfer **2.531 MB**. Reports are in `benchmarks/2026-10-14/complete-scene/`. A 4,500px constant-speed scroll gesture after loading had no frame gaps above 100ms at either 390px or 1440px width in the lab browser. This does not establish frame pacing on every real device.
+
+
+## Portfolio analytics
+
+PostHog Web Analytics uses a separate free organization, **Younes Benketira Portfolio**, and project `691928`. Open https://us.posthog.com/project/691928/web to see visits, unique visitors, referrers, campaigns, countries, and devices. CoachDiff data remains in its own organization. The free allowance is 1 million analytics events per month; no payment method was added.
+
+Copy `.env.example` to `.env.local` and set the project's browser capture key as `POSTHOG_PROJECT_KEY`, and its exact regional ingestion origin as `POSTHOG_API_HOST`. `npm run build` reads that ignored file. The capture key is public browser configuration, not a personal API key. Do not put personal API keys in the website or repository. Both fields must be configured together. Without both, analytics stays disabled. The generated release bundles contain the public capture key; keep the configuration file for future builds.
+
+The SDK is bundled locally and starts after the document load event, outside the 3D startup and error handling. Capture is restricted to `younesbenketira.com` and `www.younesbenketira.com`, so local previews do not pollute production data. A page view is sent once per page load; chapter/hash navigation does not create duplicate page views. PostHog captures pageleave for engagement. Custom events are `portfolio_chapter_reached` (each chapter once per visit), `portfolio_link_clicked` (a fixed destination label), and `portfolio_demo_played` (once per visit). URLs omit query strings and fragments, referrers retain only their origin, and string properties are bounded. Standard campaign fields remain available. Anonymous IDs persist in first-party local storage and cookies; there is no account identification or fingerprinting.
+
+Session replay, automatic click capture, heatmaps, surveys, feature flags, and error tracking are disabled. This integration adds PostHog, not CoachDiff's separate Google Analytics setup. Run `node --test scripts/test-analytics.mjs` for focused tracking checks.

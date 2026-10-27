@@ -4,6 +4,15 @@ import sharp from 'sharp';
 import wawoff2 from 'wawoff2';
 import { readFile, writeFile, mkdir, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
+import { loadEnvFile } from 'node:process';
+
+if (existsSync('.env.local')) loadEnvFile('.env.local');
+const analyticsKey = process.env.POSTHOG_PROJECT_KEY || '';
+const analyticsHost = process.env.POSTHOG_API_HOST || '';
+const allowedHosts = ['https://us.i.posthog.com', 'https://eu.i.posthog.com'];
+if (Boolean(analyticsKey) !== Boolean(analyticsHost)) throw new Error('Configure both PostHog key and host.');
+if (analyticsHost && !allowedHosts.includes(analyticsHost)) throw new Error('Unsupported PostHog ingestion host.');
 
 const root = path.resolve('dist');
 const output = path.join(root, 'bundles');
@@ -28,7 +37,11 @@ const worker = await build({ ...options, entryPoints: ['dist/city-worker.js'] })
 const workerPath = Object.keys(worker.metafile.outputs).find(name => name.endsWith('.js'));
 const workerURL = './bundles/' + path.basename(workerPath);
 const app = await build({ ...options, entryPoints: ['dist/boot.js'], splitting: true,
-  define: { CITY_WORKER_URL: JSON.stringify(workerURL) },
+  define: {
+    CITY_WORKER_URL: JSON.stringify(workerURL),
+    POSTHOG_PROJECT_KEY: JSON.stringify(analyticsKey),
+    POSTHOG_API_HOST: JSON.stringify(analyticsHost),
+  },
 });
 const bootPath = Object.entries(app.metafile.outputs).find(([, data]) => data.entryPoint === 'dist/boot.js')[0];
 const htmlPath = path.join(root, 'index.html');

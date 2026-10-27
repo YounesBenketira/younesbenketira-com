@@ -1,3 +1,6 @@
+import { scheduleAnalytics } from './analytics.js';
+
+scheduleAnalytics();
 const loader = document.querySelector('#loading-screen');
 const meter = loader.querySelector('[role="progressbar"]');
 const label = loader.querySelector('output');
