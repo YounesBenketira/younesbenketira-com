@@ -53,7 +53,7 @@ export function trackPortfolio(client, page = document) {
 }
 
 async function startAnalytics() {
-  const { default: client } = await import('posthog-js/dist/module.no-external');
+  const { default: client } = await import('posthog-js/dist/module.full.no-external');
   client.init(POSTHOG_PROJECT_KEY, {
     api_host: POSTHOG_API_HOST,
     autocapture: false,
@@ -63,7 +63,11 @@ async function startAnalytics() {
     capture_exceptions: false,
     capture_heatmaps: false,
     capture_performance: false,
-    disable_session_recording: true,
+    disable_session_recording: false,
+    session_recording: {
+      maskAllInputs: false,
+      maskInputOptions: { password: true },
+    },
     disable_surveys: true,
     person_profiles: 'identified_only',
     persistence: 'localStorage+cookie',
