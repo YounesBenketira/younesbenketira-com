@@ -1,5 +1,17 @@
 # Younes Benketira
 
+## First blog release exception, November 1, 2026
+
+The user explicitly approved a one-release exception to deploy The End of Manual
+Software Maintenance, its blog listing, illustrations, copy prompts, font assets,
+and public design guide despite the existing publication-quality failures.
+The fresh complete check reported bundle complexity/file-size failures, an
+unavailable Halstead analyzer, missing dead-code/duplication/type analyzers, and
+deferred coverage/CRAP/mutation checks. Syntax, custom lint, HTML structure,
+asset links, prompt JSON, and the local HTTP preview were checked. Browser
+interaction remains unverified. This exception applies only to this release;
+it does not mark the quality gate as passed or change future enforcement.
+
 ## Blog layout (October 27, 2026)
 
 Blog illustrations use a subtle 1px bronze border at 15% opacity.
