@@ -20,11 +20,17 @@ Cloudflare must route both hostnames to the public tunnel and its `http://127.0.
 
 ## Content and assets
 
+The public theme guide for agents is `dist/design.md`, served at `/design.md`.
+Keep it aligned with the site's styles. The repository's `DESIGN.md` retains
+the detailed design history.
+
 The blog index is at `/blog/`. Edit `dist/blog/index.html` for the article list and
 `dist/blog/blog.css` for its shared reading layout. Each article is a directory
 with its own `index.html`, so direct links work on both the preview and Caddy.
-The list is empty until real articles are added. Sample articles and their assets
-are excluded from the release.
+The first article is `/blog/the-end-of-manual-software-maintenance/`, with its
+cover and three expandable diagrams stored beside its HTML. The monitoring and
+full-system diagrams have copyable build prompts. Sample articles and their
+assets are excluded from the release.
 Blog pages are plain HTML and need no 3D scene or JavaScript to read or navigate.
 
 Edit `dist/index.html` for portfolio copy. Styles live in `dist/*.css`; scene modules in `dist/*.js`. See `TEXTURES.md` for the generated limestone asset and `dist/data/SOURCES.html` for map attribution. Third-party licenses are retained with their assets.

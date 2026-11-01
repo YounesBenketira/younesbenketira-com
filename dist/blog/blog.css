@@ -1,4 +1,5 @@
 @font-face{font-family:'Great Vibes';src:url('/fonts/GreatVibes-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:Inter;src:url('/fonts/Inter-Semibold.woff2') format('woff2');font-style:normal;font-weight:590;font-display:swap}
 :root{color-scheme:light;--paper:#f9f6ec;--ink:#292620;--muted:#595348;--accent:#785a2c;--line:#d9cdb7;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-synthesis:none}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:var(--paper)}
@@ -15,7 +16,7 @@ a:focus-visible{outline:3px solid var(--accent);outline-offset:6px}
 .post-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:72px 48px;list-style:none;margin:0;padding:0}
 .post-list>li{min-width:0}
 .post-card{display:flex;flex-direction:column;height:100%;padding:16px;border-radius:12px;text-decoration:none;cursor:pointer}
-.post-image{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid #785a2c26;border-radius:8px;background:#eee5d4}
+.post-image{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid #785a2c26;background:#eee5d4}
 .post-copy{display:flex;flex-direction:column;gap:12px;flex:1;padding-top:24px;min-width:0}
 .post-copy p,.post-copy h2{margin:0}
 h1,h2,h3{font-weight:500;overflow-wrap:anywhere}
@@ -31,13 +32,36 @@ h1,h2,h3{font-weight:500;overflow-wrap:anywhere}
 .article-main{padding-block:20px 96px}
 .back-link{display:inline-flex;align-items:center;min-height:32px;max-width:100%;margin:0;padding:4px 0;color:var(--muted);font-size:.8125rem;text-decoration:none}
 .back-link:hover{color:var(--accent);text-decoration:underline}
-.article-heading{width:min(100%,720px);margin:16px auto 0;text-align:center}
-.article-heading h1{font-size:clamp(1.875rem,3.2vw,2.5rem);font-weight:600;line-height:1.2;letter-spacing:-.04em;margin:0;text-wrap:balance}
-.article-cover{display:block;width:min(100%,960px);height:auto;aspect-ratio:2/1;object-fit:cover;margin:40px auto 0;border:1px solid #785a2c26;border-radius:10px;background:#eee5d4}
+.article-heading{width:min(100%,900px);margin:16px auto 0;text-align:center}
+.article-heading h1{font-family:Inter,Arial,Helvetica,sans-serif;font-size:3rem;font-weight:590;line-height:1;letter-spacing:-.022em;margin:0;text-wrap:balance}
+.article-subtitle{max-width:680px;margin:24px auto 0;font-size:1.0625rem;line-height:1.6;color:var(--muted)}
+.article-cover{display:block;width:min(100%,960px);height:auto;aspect-ratio:2/1;object-fit:cover;margin:40px auto 0;border:1px solid #785a2c26;background:#eee5d4}
+.article-cover.article-cover-natural{aspect-ratio:auto}
+.article-cover-trigger{display:block;width:min(100%,960px);margin:40px auto 0;cursor:zoom-in}
+.article-cover-trigger .article-cover{width:100%;margin:0}
+.image-modal{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:64px 24px 24px;border:0;background:#181613f2;color:var(--paper);overflow:auto}
+.image-modal[open]{display:flex;align-items:center;justify-content:center}
+.image-modal::backdrop{background:#181613}
+.image-modal img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.image-modal-close{position:absolute;top:12px;right:16px;min-width:44px;min-height:44px;padding:8px 16px;border:1px solid #f9f6ec66;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.image-modal-close:focus-visible{outline:3px solid var(--paper);outline-offset:3px}
+html:has(.image-modal[open]){overflow:hidden}
 .article-meta{justify-content:center;gap:8px 20px;margin:24px auto 0;text-align:center}
-.article-body{width:min(100%,680px);margin:48px auto 0;font-size:1.0625rem;line-height:1.8;overflow-wrap:anywhere;text-align:left}
-.article-body p{margin:0 0 24px}
-.article-body h2{font-size:1.5rem;font-weight:600;line-height:1.35;letter-spacing:-.025em;margin:48px 0 20px;scroll-margin-top:24px}
+.article-body{width:min(100%,680px);margin:48px auto 0;font-size:1.0625rem;line-height:1.6;overflow-wrap:anywhere;text-align:left}
+.article-body p{margin:0 0 20px}
+.article-figure{margin:32px 0}
+.article-figure-link{display:block;cursor:zoom-in}
+.article-figure img{display:block;width:100%;height:auto;border:1px solid #785a2c26}
+.copy-prompt-button{position:relative;display:block;width:fit-content;max-width:100%;margin:16px auto 0;min-height:28px;padding:5px 10px;border:1px solid var(--accent);border-radius:4px;background:var(--paper);color:var(--accent);font:500 .75rem/1.333333 Arial,Helvetica,sans-serif;cursor:pointer}
+.copy-prompt-button[hidden]{display:none}
+.copy-prompt-button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.copy-prompt-button[aria-busy="true"]{cursor:wait}
+@media(any-pointer:coarse){.copy-prompt-button::before{content:"";position:absolute;inset:-8px 0}}
+.article-body .external-link{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.article-body .external-link:hover{text-decoration-thickness:2px}
+.external-link-icon{display:inline-block;font-size:.85em;white-space:nowrap;text-decoration:none}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.article-body h2{font-size:1.5rem;font-weight:600;line-height:1.35;letter-spacing:-.025em;margin:48px 0 20px;scroll-margin-top:24px;text-align:center}
 .article-body h3{font-size:1.1875rem;font-weight:600;line-height:1.4;margin:32px 0 16px}
 .article-body ul,.article-body ol{padding-left:24px;margin-block:24px}
 .article-body li+li{margin-top:12px}
@@ -55,3 +79,5 @@ code{font-family:Consolas,monospace}
 @media(max-width:700px){.site-footer,.blog-main,.article-main{width:calc(100% - 40px)}.signature{font-size:1.9rem}.blog-main{padding-block:32px 64px}.post-list{grid-template-columns:1fr;gap:48px}.post-copy{padding-top:20px}.article-main{padding-block:16px 64px}.article-heading{margin-top:12px}.article-cover{margin-top:32px;aspect-ratio:3/2}.article-body{margin-top:32px}.site-footer{padding-block:24px}}
 
 @media(prefers-reduced-motion:reduce){.post-arrow{transition:none;transform:none}}
+@media(max-width:700px){.article-cover-trigger{margin-top:32px}}
+@media(max-width:640px){.article-heading h1{font-size:2rem;line-height:1.125}}

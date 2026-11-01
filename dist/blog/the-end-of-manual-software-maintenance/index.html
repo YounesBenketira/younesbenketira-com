@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f6ec">
+  <meta name="description" content="How AI agents can autonomously maintain production software with human oversight.">
+  <title>The End of Manual Software Maintenance — Younes Benketira</title>
+  <link rel="stylesheet" href="/blog/blog.css">
+  <script src="/blog/article.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to article</a>
+  <main id="main" class="article-main">
+    <a class="back-link" href="/blog/">← All articles</a>
+    <article>
+      <header class="article-heading">
+        <h1>The End of Manual Software Maintenance</h1>
+        <p class="article-subtitle"><em>How AI agents can autonomously maintain production software with human oversight.</em></p>
+      </header>
+      <a class="article-cover-trigger" href="/blog/the-end-of-manual-software-maintenance/cover.png" data-image-title="Cover illustration" aria-label="Expand cover illustration" aria-haspopup="dialog" aria-controls="cover-modal">
+        <img class="article-cover article-cover-natural" src="/blog/the-end-of-manual-software-maintenance/cover.png" width="1670" height="942" alt="A mechanic with folded arms watches sparks rise from a car engine beneath an open hood, in a warm ivory and charcoal garage illustration.">
+      </a>
+      <div class="article-body">
+        <p>For the past few months, it has felt like every week introduced a new way of coding with AI. Developers switched between Claude and Codex, experimented with different prompting techniques, and gradually delegated larger parts of their workflows to models.</p>
+
+        <p><strong><a class="external-link" href="https://www.youtube.com/watch?v=Z47vatpsGPI&amp;t=1920s" target="_blank" rel="noopener" title="External site; opens in new tab">AI is moving from a tool engineers use to write software toward a system that can actively maintain it.<span class="external-link-icon" aria-hidden="true"> &#8599;</span><span class="visually-hidden"> (external site, opens in new tab)</span></a></strong></p>
+
+        <p>The capabilities are already here. What's lagging behind is how companies are adapting to them.</p>
+
+        <p>Imagine a production application that detects its own bugs, investigates them, implements fixes, validates those fixes, and prepares pull requests for human approval — without an engineer initiating each step.</p>
+
+        <p>The individual capabilities already exist in various forms. The interesting challenge is how we connect them into a reliable system.</p>
+
+        <p>To understand how, we need to start with loops.</p>
+
+        <h2>Loops: Giving Agents Continuous Objectives</h2>
+
+        <p>Most developers interact with AI agents through individual tasks: ask an agent to implement something, review the result, and move on.</p>
+
+        <p>But one of the more powerful ways to use agents is to place them inside a loop.</p>
+
+        <p>A loop repeatedly executes a workflow until a stopping condition is reached or the next scheduled execution arrives.</p>
+
+        <p>The important part is having a <strong>clear, measurable objective</strong>. Without one, an agent can continue making changes without knowing whether it's improving anything.</p>
+
+        <p>There are two particularly useful types of loops.</p>
+
+        <h3>Goal-bound loops</h3>
+
+        <p>These execute until an objective is satisfied, a resource limit is reached, or the system determines it cannot make further progress.</p>
+
+        <p>For example, suppose you're developing a more efficient data format.</p>
+
+        <p>Instead of manually experimenting with different representations, you could give an agent a benchmark and an objective:</p>
+
+        <p><em>Reduce the serialized data size by at least 50% while preserving all required information.</em></p>
+
+        <p>The agent can propose a format, implement it, benchmark the result, inspect the metrics, and repeat.</p>
+
+        <p>Each iteration has measurable feedback that informs the next.</p>
+
+        <figure class="article-figure">
+          <a class="article-figure-link" href="/blog/the-end-of-manual-software-maintenance/goal-bound-agent-loop.png" data-image-title="Goal-bound agent loop" aria-label="Expand goal-bound agent loop diagram" aria-haspopup="dialog" aria-controls="cover-modal">
+            <img src="/blog/the-end-of-manual-software-maintenance/goal-bound-agent-loop.png" width="1447" height="1087" loading="lazy" alt="Goal-bound agent loop: make a change, then measure the metric. Check whether the output meets the goal; if not, repeat the loop. If the goal is met, the workflow is done. Example current metric: 0.42; goal metric: 0.90.">
+          </a>
+        </figure>
+
+        <h3>Periodic loops</h3>
+
+        <p>Other workflows don't have a final objective. They need to keep operating.</p>
+
+        <p>Consider monitoring production logs.</p>
+
+        <p>An agent could run every hour, inspect new error events, identify potentially actionable regressions, and create maintenance jobs.</p>
+
+        <p>The monitoring loop doesn't need to fix anything itself. Its responsibility is simply to identify problems and ensure they are recorded.</p>
+
+        <figure class="article-figure">
+          <a class="article-figure-link" href="/blog/the-end-of-manual-software-maintenance/monitoring-loop.png" data-image-title="Production monitoring loop" aria-label="Expand production monitoring loop diagram" aria-haspopup="dialog" aria-controls="cover-modal">
+            <img src="/blog/the-end-of-manual-software-maintenance/monitoring-loop.png" width="1774" height="887" loading="lazy" alt="Production logs feed an hourly monitoring loop, which creates a pending maintenance job for a POST /checkout 500 error. The job records its ID, error, status, and time found.">
+          </a>
+          <button class="copy-prompt-button" type="button" data-copy-prompt="prompt-monitoring" aria-label="Copy prompt to build the monitoring loop" hidden>Copy prompt</button>
+          <span class="visually-hidden copy-prompt-status" role="status"></span>
+        </figure>
+
+        <p>This distinction is important: agents work better when their responsibilities are narrowly defined.</p>
+
+        <p>But loops introduce another problem.</p>
+
+        <p>What happens when a job fails halfway through? What if multiple problems are detected at once? Who validates the work, and who decides what happens next?</p>
+
+        <p>A single loop isn't enough to coordinate all of that.</p>
+
+        <h2>Graphs: Coordinating Multiple Loops</h2>
+
+        <p>A more complete maintenance system can be constructed as a graph of interconnected workflows.</p>
+
+        <p>Each workflow has an isolated responsibility, and they communicate through persistent state.</p>
+
+        <p>Let's walk through one example.</p>
+
+        <h3>Step 1: The monitoring loop detects an issue</h3>
+
+        <p>Suppose a production API begins returning HTTP 500 responses for a particular endpoint.</p>
+
+        <p>The monitoring loop inspects recent logs, identifies the recurring error, and creates a maintenance job.</p>
+
+        <p>That job might look like this:</p>
+
+        <pre><code class="language-json">{
+  "id": "JOB-1042",
+  "error": "POST /checkout returns 500",
+  "status": "pending",
+  "implementation_model": null,
+  "time_found": "2026-10-31T14:30:00Z"
+}</code></pre>
+
+        <p>This record represents durable state.</p>
+
+        <p>Rather than relying on an agent's conversation history to remember what needs to happen, the system records the work in a persistent store.</p>
+
+        <p>If an agent crashes or a process restarts, the job still exists and can be resumed or reassigned.</p>
+
+        <h3>Step 2: The implementation loop picks up the job</h3>
+
+        <p>The implementation loop looks for pending jobs and delegates them to agents.</p>
+
+        <p>Each agent operates independently in an isolated development environment.</p>
+
+        <p>For our checkout error, the implementation agent would:</p>
+
+        <ol>
+          <li>Retrieve the job and relevant logs.</li>
+          <li>Clone the repository into a sandbox.</li>
+          <li>Reproduce the error.</li>
+          <li>Investigate the root cause.</li>
+          <li>Implement a fix.</li>
+          <li>Run the relevant tests.</li>
+          <li>Submit the proposed change and supporting evidence for evaluation.</li>
+        </ol>
+
+        <p>The job also records which model performed the implementation.</p>
+
+        <p>Multiple jobs can run concurrently without requiring a single agent to manage the entire workload.</p>
+
+        <h3>Step 3: The evaluation loop validates the fix</h3>
+
+        <p>An implementation that compiles or passes a few tests isn't necessarily correct.</p>
+
+        <p>That's why evaluation should be a separate responsibility.</p>
+
+        <p>The evaluation loop picks up completed implementations and assigns them to an independent evaluator.</p>
+
+        <p>When using LLMs as judges, it's important to understand their <a class="external-link" href="https://arxiv.org/abs/2606.19544" target="_blank" rel="noopener" title="External site; opens in new tab">evaluation biases<span class="external-link-icon" aria-hidden="true"> &#8599;</span><span class="visually-hidden"> (external site, opens in new tab)</span></a>, including position bias, verbosity bias, and self-enhancement bias.</p>
+
+        <p>One way to reduce the risk of self-enhancement and correlated judgment biases is to use a different model family for evaluation than for implementation. This doesn't eliminate bias, but it introduces another degree of independence.</p>
+
+        <p>The evaluator reviews the proposed code changes and supporting evidence, runs relevant tests, and checks whether the fix addresses the reported issue without introducing regressions. Its assessment should be grounded in test results and observable behavior rather than the model's judgment alone.</p>
+
+        <p>If the fix fails evaluation, the results are attached to the job and returned to the implementation workflow for another iteration.</p>
+
+        <p>If it passes, the change moves forward to human review.</p>
+
+        <h3>Step 4: Human approval requires product judgment</h3>
+
+        <p>Even with independent evaluation, today's models are far from perfect. A fix can be technically correct and pass automated tests while still negatively affecting user experience or business metrics the evaluation system cannot accurately measure.</p>
+
+        <p>For example, an agent might resolve a checkout error by introducing an additional verification step. The error disappears, the tests pass, but the additional friction could reduce checkout conversion rates.</p>
+
+        <p>This is where human oversight becomes essential. A passing evaluation produces a pull request with the proposed fix and supporting evidence, but the engineer reviewing it needs to evaluate more than technical correctness.</p>
+
+        <p><strong>Engineers need to develop product sense, not just technical expertise.</strong></p>
+
+        <p>They need to understand their users, the metrics that matter, and the trade-offs behind each change. If every product decision has to be passed to a product manager, the engineer becomes little more than a human proxy between the AI and the person actually making the decision.</p>
+
+        <p><strong>The engineer approving the change needs to own its impact on the product, not just the quality of its implementation.</strong></p>
+
+        <figure class="article-figure">
+          <a class="article-figure-link" href="/blog/the-end-of-manual-software-maintenance/automated-fix-workflow.png" data-image-title="Automated fix workflow" aria-label="Expand automated fix workflow diagram" aria-haspopup="dialog" aria-controls="cover-modal">
+            <img src="/blog/the-end-of-manual-software-maintenance/automated-fix-workflow.png" width="1774" height="887" loading="lazy" alt="Production logs feed an hourly monitoring loop that creates jobs in durable storage. An implementation loop clones the repository, implements a fix with an agent, and runs the application. An evaluation loop runs regression tests, measures metrics, and compares before and after. Rejected fixes return to implementation; successful fixes become pull requests.">
+          </a>
+          <button class="copy-prompt-button" type="button" data-copy-prompt="prompt-system" aria-label="Copy prompt to build the complete maintenance system" hidden>Copy prompt</button>
+          <span class="visually-hidden copy-prompt-status" role="status"></span>
+        </figure>
+
+        <h2>From Individual Agents to a Maintenance System</h2>
+
+        <p>Connecting these workflows creates a system that continuously identifies problems, implements solutions, and validates changes with minimal human intervention.</p>
+
+        <p>And it doesn't have to stop at bug fixing. The same architecture can support performance optimization, dependency upgrades, and other ongoing maintenance tasks. Additional loops can extend its capabilities, such as a daily reporting loop that summarizes detected incidents, attempted fixes, approved changes, and unresolved jobs.</p>
+
+        <p>The larger shift is that <strong>software maintenance becomes a continuously operating process</strong> rather than a collection of tasks engineers initiate and execute manually.</p>
+
+        <p><strong>As the cost of implementation decreases, the value of knowing what to implement increases.</strong></p>
+
+        <p>The competitive advantage shifts toward engineers who can identify valuable problems, design the systems that solve them, and take ownership of the results.</p>
+
+        <hr>
+
+        <section aria-labelledby="article-sources">
+          <h2 id="article-sources">Sources</h2>
+          <ul>
+            <li>Boris Cherny and Jesse Chen (June 19, 2026). <a class="external-link" href="https://www.youtube.com/watch?v=Z47vatpsGPI&amp;t=1920s" target="_blank" rel="noopener" title="External site; opens in new tab">Fireside Chat with Boris Cherny, Head of Claude Code<span class="external-link-icon" aria-hidden="true"> &#8599;</span><span class="visually-hidden"> (external site, opens in new tab)</span></a>. @Scale (Meta), recording at 32:00.</li>
+            <li>Justin D. Norman, Michael U. Rivera, and D. Alex Hughes (2026). <a class="external-link" href="https://arxiv.org/abs/2606.19544" target="_blank" rel="noopener" title="External site; opens in new tab">Reliability without Validity: A Systematic, Large-Scale Evaluation of LLM-as-a-Judge Models Across Agreement, Consistency, and Bias<span class="external-link-icon" aria-hidden="true"> &#8599;</span><span class="visually-hidden"> (external site, opens in new tab)</span></a>.</li>
+            <li>Lianmin Zheng et al. (2023). <a class="external-link" href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener" title="External site; opens in new tab">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena<span class="external-link-icon" aria-hidden="true"> &#8599;</span><span class="visually-hidden"> (external site, opens in new tab)</span></a>.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+  </main>
+  <template id="prompt-monitoring">
+Create a loop that checks [service] logs every [period] and creates a job when it finds an error or other issue:
+
+{
+  "id": "[unique job ID]",
+  "error": "[description of the detected issue]",
+  "status": "pending",
+  "implementation_model": null,
+  "time_found": "[ISO 8601 UTC timestamp]"
+}
+
+Discuss the placeholder values and goal with the user before building. Research existing queue libraries and integrations for their stack, explain the trade-offs, and get their permission before adding one. Base any delegated decisions on research.
+  </template>
+  <template id="prompt-system">
+Build an automated maintenance system for [repository] and [service] with separate monitoring, implementation, and evaluation loops connected through [persistent job store].
+
+Create jobs with this format:
+
+{
+  "id": "[unique job ID]",
+  "error": "[description of the detected issue]",
+  "status": "pending",
+  "implementation_model": null,
+  "time_found": "[ISO 8601 UTC timestamp]"
+}
+
+1. Monitoring: check [service] logs every [period] and create jobs for detected issues.
+2. Implementation: pick up a pending job, reproduce the issue, implement a fix using [implementation model], and run the relevant tests. Record the model used and the results.
+3. Evaluation: use [evaluation model] to check the fix against tests and observed behavior. Return rejected fixes to implementation with feedback.
+4. Human review: create a pull request for a passing fix with the changes and supporting evidence. Require human approval before merging or deploying.
+
+Keep jobs and results in durable storage so work can resume after a restart.
+
+Discuss the placeholder values and goals with the user before building. Discuss whether to run agents in sandboxes and whether to use different model families for implementation and evaluation; both are optional design choices. Research queue libraries, storage options, and integrations that fit their stack, explain the trade-offs, and get their permission before adding one. Agree on retry, concurrency, and resource limits. Base any delegated decisions on research.
+  </template>
+  <dialog id="cover-modal" class="image-modal" aria-label="Cover illustration">
+    <button class="image-modal-close" type="button" autofocus>Close</button>
+    <img src="/blog/the-end-of-manual-software-maintenance/cover.png" width="1670" height="942" alt="A mechanic with folded arms watches sparks rise from a car engine beneath an open hood, in a warm ivory and charcoal garage illustration.">
+  </dialog>
+  <footer class="site-footer"><p>Younes Benketira · AI Product Engineer</p><a href="/">Back to portfolio ↗</a></footer>
+</body>
+</html>

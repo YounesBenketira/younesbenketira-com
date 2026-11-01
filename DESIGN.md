@@ -21,16 +21,43 @@ line height of 1.15. There is 64px from this group to the article list. Article
 pages begin with their centered title. The homepage Blog button is positioned inside the hero and scrolls away with
 it. The final contact card also includes a Blog link alongside its other links.
 
-Article pages center a 720px title group above a wider 960px illustration.
-Article titles have no subtitle; summaries remain on the blog listing.
+Article pages center a 900px title group above a 960px illustration, both wider than the reading column.
+Article titles use locally hosted Inter at weight 590, 48px with line height 1,
+and -0.022em letter spacing. At 640px and below, titles use 32px and line height
+1.125. These match Linear's article title metrics, checked October 31, 2026.
+The supplied subtitle sits between the title and illustration, centered in a
+680px column with a 24px top gap. Its wording and italic emphasis are preserved.
+Cover and listing images have square corners. The cover opens in a native image
+dialog with Close, Escape, and backdrop dismissal; without JavaScript its link
+opens the image directly. The cover retains its natural aspect ratio.
+The monitoring and full-system diagrams have centered Copy prompt buttons below
+their images, with a 16px gap. These buttons stay visible when JavaScript is
+available and copy build prompts with editable placeholders and the job JSON
+format. The goal-bound loop has no copy prompt. Show copy success or failure
+and announce it to screen readers.
+Copy prompt sizing was reviewed November 1, 2026: 28px minimum visible height,
+12px text with 16px line height, weight 500, 5px vertical / 10px horizontal
+padding, and a 4px radius. On devices with a coarse pointer, an invisible 8px
+extension above and below gives a minimum 44px target without enlarging the
+visible button; the 16px image gap leaves clearance from the image link.
+The 12px / 16px typography follows Radix's smallest text token, while the 28px
+button height is a site choice above WCAG 2.2 AA's 24px target minimum. The 44px
+touch target follows the enhanced target-size guidance. Sources reviewed:
+https://raw.githubusercontent.com/radix-ui/themes/main/packages/radix-ui-themes/src/styles/tokens/typography.css
+https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced
 Only the article date is centered below the illustration.
-The 680px reading column and its section headings stay left-aligned.
+The reading column is 680px wide. Main part headings (h2) are centered;
+subsection headings (h3) and body text stay left-aligned to distinguish the levels.
 A subtle All articles link sits at the top left with compact padding and
 returns to /blog/; category labels
-are omitted, and the footer keeps its return link. The title stays at 30-40px, body
-text at 17px with 1.8 line height. The dummy article and its illustration are
-excluded from the release; the list is empty until real posts are added.
+are omitted, and the footer keeps its return link. Body
+text at 17px with 1.6 line height and 20px paragraph gaps. The dummy article and its illustration are
+excluded from the release; the first real post is The End of Manual Software Maintenance.
 Blog routes use plain HTML and CSS without the Three.js scene.
+External article links open in a new tab with `rel="noopener"`. Use bronze
+underlined text and a visible external arrow, plus screen-reader text and a
+tooltip that identify the external destination and new-tab behavior.
 
 The real articles should emphasize illustrations, animation, and interactive
 examples, supported by short text sections. Choose visuals that explain each
