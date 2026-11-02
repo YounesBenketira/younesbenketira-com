@@ -150,7 +150,7 @@ export function createJourney() {
       if (nextActive === active) return;
       active = nextActive;
       markers.forEach((marker, markerIndex) => {
-        if (markerIndex === active) marker.setAttribute('aria-current', 'step');
+        if (markerIndex === active) marker.setAttribute('aria-current', 'location');
         else marker.removeAttribute('aria-current');
       });
       document.body.dataset.chapter = String(active);

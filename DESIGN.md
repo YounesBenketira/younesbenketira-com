@@ -1,5 +1,56 @@
 # Younes Benketira
 
+## Recruiter navigation release exception, November 1, 2026
+
+The user explicitly authorized committing, pushing, and deploying this chat's
+loading, scroll cue, desktop navigation, and labeled contact-grid changes,
+with permission to bypass check requirements for this release. Build, syntax,
+custom lint, focused worker/navigation checks, and local HTTP checks passed.
+Shared quality validation remains blocked by generated-bundle complexity and
+file-size findings, an unavailable Halstead analyzer, missing type/dead-code/
+duplication analyzers, and deferred coverage/CRAP/mutation checks. Browser
+visual verification and the loading-time improvement remain unmeasured.
+This exception applies only to this release and does not change future checks
+or represent passing quality evidence.
+
+## Explore cue, November 1, 2026
+
+The opening view shows a Scroll down card for recruiters to find the next
+action quickly. The cue uses 18–22px responsive text at weight 600, a
+larger arrow, and an ivory card with a bronze border, 16px corners, and soft
+shadow. The card has 14px vertical / 24px horizontal padding and a minimum
+56px target height. Hover and keyboard focus use a warmer ivory background.
+The cue is horizontally centered and still links to Experience. On desktop
+it sits 88px above the bottom edge; mobile keeps its safe-area-aware 24px
+minimum bottom offset. After more than
+0px of scrolling on desktop (761px and wider), a bottom navigation bar replaces it with Home, Experience,
+Project, Contact, and Blog, in that order. Returning to the top restores the
+cue. Blog no longer appears at the top right. The section links keep their
+active highlight; Blog links to its separate page. Hidden controls cannot
+receive keyboard focus. The bar is hidden in the HTML before startup and uses
+8px gaps, 10px outer padding, and spacious link padding. At 760px and below,
+the bottom bar stays hidden, including from keyboard navigation. The Scroll
+down cue remains available at the top and disappears after scrolling. Mobile
+content needs no additional clearance for a navigation bar. Blog remains
+available in the contact card. Navigation works independently
+of WebGL startup.
+Text can wrap on narrow screens and at enlarged text sizes. Browser layout verification remains
+pending because browser control is unavailable in this session.
+
+## Contact links, November 1, 2026
+
+The contact card now uses a grid of labeled icon links: Email, LinkedIn,
+GitHub, Blog, X, YouTube. This order puts recruiter contact and engineering
+profiles first. All labels stay visible without hover. The grid has three
+columns on desktop with 12px gaps and 88px minimum link height. At 760px
+and below, use two columns, 10px gaps, 64px minimum link height, 20px icons,
+and 13px labels. The mobile grid has 12px extra side padding inside the card
+and a 320px maximum width to keep links away from the patterned border.
+Short screens retain the contact frame's scrolling.
+Contact hover and keyboard focus change colors immediately, without a color
+transition or vertical movement. Hover styling applies only to devices that
+support hover, so touch taps do not leave a simulated hover state.
+
 ## First blog release exception, November 1, 2026
 
 The user explicitly approved a one-release exception to deploy The End of Manual

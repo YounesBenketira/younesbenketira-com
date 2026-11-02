@@ -6,7 +6,8 @@ import { createWorld, resizeWorld, positionCamera, updateWorld } from './world.j
 import { createSignature, frameSignature, updateSignature } from './signature.js';
 import { applyLimestone } from './surfaces.js';
 import { createJourney, heroPose } from './journey.js';
-import { loadSurroundings, prepareSurroundings } from './surroundings.js';
+import { loadSurroundings } from './surroundings.js';
+import { prepareSurroundings } from './city-loader.js';
 import { createScrollbar } from './scrollbar.js';
 
 const canvas = document.querySelector('#mosque');

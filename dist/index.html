@@ -10,6 +10,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f5f1e8'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='40' font-family='serif' font-style='italic' fill='%232c6355'%3EY%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="./fonts/GreatVibes-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./textures/ivory-limestone.webp" as="image" crossorigin>
+  <!-- startup-preloads -->
+  <link rel="modulepreload" href="./bundles/boot-G3PGGIV3.js">
+  <link rel="modulepreload" href="./bundles/chunk-CVCCY66B.js">
+  <!-- /startup-preloads -->
   <!-- styles-bundle -->
   <style id="loading-styles">#loading-screen{display:none}
 .js #loading-screen:not([hidden]){position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;color:#292620}
@@ -19,7 +23,7 @@
 .loading-indicator output{font:400 14px/1.4 Arial,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.04em}
 .is-loading{overflow:hidden;background:#fff}
 .is-loading body> :not(#loading-screen){visibility:hidden}</style>
-  <link rel="stylesheet" href="./bundles/styles-0e4f784125d751c7.css">
+  <link rel="stylesheet" href="./bundles/styles-4cabbad03db47dac.css">
   <!-- /styles-bundle -->
 </head>
 <body data-chapter="0">
@@ -34,10 +38,9 @@
   <main id="experience" aria-labelledby="title">
     <div id="story">
       <section id="home" class="hero" data-chapter aria-labelledby="title">
-        <a class="blog-entry" href="/blog/">Blog <span aria-hidden="true">↗</span></a>
         <h1 id="title">Younes Benketira</h1>
         <p class="hero-role">AI Product Engineer</p>
-        <a class="scroll-cue" href="#career">Scroll to explore <span aria-hidden="true">&darr;</span></a>
+        <a class="scroll-cue" href="#career">Scroll down <span aria-hidden="true">&darr;</span></a>
       </section>
       <section id="career" class="chapter career-chapter" data-chapter aria-labelledby="career-title">
         <div class="chapter-frame">
@@ -106,24 +109,30 @@
           <article class="contact-card">
             <h2 id="contact-title">Let&rsquo;s build<em>something meaningful.</em></h2>
             <div class="social-links">
-              <a href="/blog/" aria-label="Read my blog" title="Blog"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15M5 8h4m-4 4h4m6-4h4m-4 4h4"/></svg></a>
-              <a href="mailto:me@younesbenketira.com" aria-label="Email Younes" title="Email Younes"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></a>
-              <a href="https://www.linkedin.com/in/younesbenketira/" target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m4 0v-7m0 3a3 3 0 0 1 6 0v4"/><circle cx="7" cy="7" r=".7" fill="currentColor" stroke="none"/></svg></a>
-              <a href="https://github.com/YounesBenketira" target="_blank" rel="noreferrer" aria-label="GitHub, opens in a new tab" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-4 1-4-2-6-3m6 6v-4c0-1 .3-1.7.8-2.2-3-.4-5.8-1.5-5.8-6A5 5 0 0 1 5.4 6c-.3-1-.3-2.1.1-3 0 0 1.1-.3 3.5 1.3a12 12 0 0 1 6 0C17.4 2.7 18.5 3 18.5 3c.4.9.4 2 .1 3A5 5 0 0 1 20 9.8c0 4.5-2.8 5.6-5.8 6 .5.5.8 1.2.8 2.2v4"/></svg></a>
-              <a href="https://x.com/MuslimSoftware" target="_blank" rel="noreferrer" aria-label="Muslim Software on X, opens in a new tab" title="Muslim Software on X"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3h4l12 18h-4L4 3ZM20 3 4 21"/></svg></a>
-              <a href="https://www.youtube.com/@MuslimSoftware" target="_blank" rel="noreferrer" aria-label="Muslim Software on YouTube, opens in a new tab" title="Muslim Software on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a>
+              <a href="mailto:me@younesbenketira.com" aria-label="Email Younes" title="Email Younes"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span>Email</span></a>
+              <a href="https://www.linkedin.com/in/younesbenketira/" target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m4 0v-7m0 3a3 3 0 0 1 6 0v4"/><circle cx="7" cy="7" r=".7" fill="currentColor" stroke="none"/></svg><span>LinkedIn</span></a>
+              <a href="https://github.com/YounesBenketira" target="_blank" rel="noreferrer" aria-label="GitHub, opens in a new tab" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-4 1-4-2-6-3m6 6v-4c0-1 .3-1.7.8-2.2-3-.4-5.8-1.5-5.8-6A5 5 0 0 1 5.4 6c-.3-1-.3-2.1.1-3 0 0 1.1-.3 3.5 1.3a12 12 0 0 1 6 0C17.4 2.7 18.5 3 18.5 3c.4.9.4 2 .1 3A5 5 0 0 1 20 9.8c0 4.5-2.8 5.6-5.8 6 .5.5.8 1.2.8 2.2v4"/></svg><span>GitHub</span></a>
+              <a href="/blog/" aria-label="Read my blog" title="Blog"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15M5 8h4m-4 4h4m6-4h4m-4 4h4"/></svg><span>Blog</span></a>
+              <a href="https://x.com/MuslimSoftware" target="_blank" rel="noreferrer" aria-label="Muslim Software on X, opens in a new tab" title="Muslim Software on X"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3h4l12 18h-4L4 3ZM20 3 4 21"/></svg><span>X</span></a>
+              <a href="https://www.youtube.com/@MuslimSoftware" target="_blank" rel="noreferrer" aria-label="Muslim Software on YouTube, opens in a new tab" title="Muslim Software on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg><span>YouTube</span></a>
             </div>
           </article>
         </div>
       </section>
     </div>
   </main>
-  <nav class="chapter-nav" aria-label="Portfolio chapters"><a href="#home" data-stop aria-current="step" aria-label="Introduction">00</a><a href="#career" data-stop aria-label="FlightHub experience">01</a><a href="#project" data-stop aria-label="CoachDiff project">02</a><a href="#contact" data-stop aria-label="Contact">03</a></nav>
+  <nav class="chapter-nav" aria-label="Portfolio sections" hidden>
+    <a href="#home" data-stop aria-current="location">Home</a>
+    <a href="#career" data-stop>Experience</a>
+    <a href="#project" data-stop>Project</a>
+    <a href="#contact" data-stop>Contact</a>
+    <a href="/blog/" class="chapter-blog">Blog</a>
+  </nav>
   <div class="map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">&copy; OpenStreetMap contributors</a><span aria-hidden="true"> &middot; </span><a href="./data/SOURCES.html" target="_blank" rel="noreferrer">Terrain &amp; sources</a></div>
   <p id="notice" role="status"></p>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
   <!-- app-bundle -->
-  <script type="module" src="./bundles/boot-E4YCTDR3.js" onerror="document.documentElement.classList.remove('is-loading');document.querySelector('#loading-screen').hidden=true;document.querySelector('#experience').classList.add('scene-failed');document.querySelector('#notice').textContent='The 3D view could not load. Reload to try again.'"></script>
+  <script type="module" src="./bundles/boot-G3PGGIV3.js" onerror="document.documentElement.classList.remove('is-loading');document.querySelector('#loading-screen').hidden=true;document.querySelector('#experience').classList.add('scene-failed');document.querySelector('#notice').textContent='The 3D view could not load. Reload to try again.'"></script>
   <!-- /app-bundle -->
   <script type="module" src="./mila-player.js?v=midnight-inline-1"></script>
 </body>

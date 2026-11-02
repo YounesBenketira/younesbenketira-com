@@ -43,6 +43,8 @@ The white loading screen reports weighted startup stages: scene code, mosque geo
 
 `npm run build` produces hashed ES module bundles, a dedicated city geometry worker, WebP images, and the original font compressed losslessly to WOFF2. Original images and the font remain build inputs. The worker transfers typed geometry buffers instead of blocking the page while parsing and building the city. Shader compilation uses the same offscreen render target as the live scene.
 
+The HTML preloads the hashed bootstrap and 3D application modules. The small bootstrap starts the city worker before importing the 3D application, so city fetching and geometry processing can overlap scene code loading. Both entry points reuse one preparation promise and one worker. The worker owns the JSON request; the document does not separately preload it. The build derives module URLs from its output metadata. Module preloading does not execute the scene early, so the loading screen still paints before scene construction and stays visible until the complete scene is ready.
+
 ### Measured results, October 14, 2026
 
 Three cold-load Lighthouse 13.5.0 runs per version, mobile simulated throttling, Chromium 156.0.8078.4, headless SwiftShader. Both versions used the same localhost server with gzip, no-cache, and identical hardware. Baseline: commit `4e8fb5f`. Raw reports are in `benchmarks/2026-10-14/`.

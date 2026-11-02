@@ -6,6 +6,26 @@ This file describes the site's visual theme, not permission to change the site.
 
 ## Visual direction
 
+The opening Scroll down link uses 18–22px responsive text at weight 600,
+a larger arrow, and an ivory card with a bronze border, 16px corners, soft
+shadow, and a minimum 56px target height. Keep its lower viewport
+position and allow text to wrap on narrow screens. The desktop cue sits 88px
+above the bottom edge; mobile keeps its 24px minimum safe-area-aware offset.
+On desktop, after visitors scroll,
+replace the cue with a bottom bar: Home, Experience, Project, Contact, Blog.
+Blog is the last link in this bar rather than a top-right homepage button.
+At 760px and below, do not show the bottom bar. Keep the initial Scroll down
+cue and the Blog link in the contact card.
+
+Contact links always show their labels below the icons. Order them Email,
+LinkedIn, GitHub, Blog, X, YouTube in a three-column grid, or two columns at
+760px and below. Desktop links have 12px gaps and 88px minimum height.
+Mobile links use 10px gaps, 64px minimum height, 20px icons, and 13px labels.
+Give the mobile grid 12px extra side padding and a 320px maximum width so
+the buttons stay clear of the patterned border.
+Contact hover feedback is immediate, with no color transition or movement.
+Limit hover styling to hover-capable devices; retain visible keyboard focus.
+
 Use warm ivory surfaces, charcoal text, and restrained bronze accents. Keep the
 layout clear and quiet. The portfolio features a Three.js scene inspired by
 Djamaa el Djazair; blog pages use a simple reading layout without the 3D scene.

@@ -1,6 +1,9 @@
 import { scheduleAnalytics } from './analytics.js';
+import { initializeNavigation } from './navigation.js';
+import { prepareSurroundings } from './city-loader.js';
 
 scheduleAnalytics();
+initializeNavigation();
 const loader = document.querySelector('#loading-screen');
 const meter = loader.querySelector('[role="progressbar"]');
 const label = loader.querySelector('output');
@@ -23,6 +26,7 @@ function reveal() {
 
 window.addEventListener('scene-complete', reveal, { once: true });
 window.addEventListener('scene-failed', reveal, { once: true });
+void prepareSurroundings().catch(() => {});
 // Paint the lightweight loading screen before evaluating the 3D application.
 requestAnimationFrame(() => requestAnimationFrame(() => {
   import('./app.js').catch(error => {
