@@ -14,5 +14,7 @@ handle @portfolio {
         rewrite * /Younes-Benketira-Resume.pdf
         file_server
     }
-    file_server
+    file_server {
+        precompressed br gzip
+    }
 }

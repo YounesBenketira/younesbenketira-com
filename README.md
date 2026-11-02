@@ -86,6 +86,41 @@ Verified on 390px and 1440px viewports: held the city request pending and confir
 Final complete-scene Lighthouse runs: 67, 69, 69 (median **69**). Median FCP **1.503 s**, LCP **3.507 s**, TBT **0.850 s**; transfer **2.531 MB**. Reports are in `benchmarks/2026-10-14/complete-scene/`. A 4,500px constant-speed scroll gesture after loading had no frame gaps above 100ms at either 390px or 1440px width in the lab browser. This does not establish frame pacing on every real device.
 
 
+### Local startup optimization work, November 1, 2026
+
+The runtime map build removes fields that scene construction never reads, while
+retaining the original map and attribution sources. The map is emitted under a
+content-hashed `/bundles/` URL so the existing immutable cache policy applies.
+Its JSON size falls from 6,334,602 to 5,122,933 bytes. The build also writes Brotli
+and gzip versions of JavaScript, CSS, and runtime map bundles; the release Caddy
+configuration serves these files without compressing them for each request.
+The runtime map's Brotli file is 1,150,563 bytes, compared with 1,620,756 bytes for
+gzip of the original map. These sizes compare two compression formats, not only
+the field removal. Startup module preloads now include static shared imports;
+dynamic analytics imports remain deferred.
+
+`node --test scripts/test-performance-build.mjs scripts/test-build-preloads.mjs`
+checks identical city geometry buffers and bounds, content-versioned map URLs,
+compression round trips, and startup dependency selection. The full scene still
+must finish before the loader is released. Three further production baseline
+loads reached `scene-ready` in 2.82, 3.03, and 3.29 seconds. Local comparisons and
+profiling are saved under `benchmarks/2026-11-01/`; they do not establish a
+production improvement or a sub-500ms load. Shared quality validation reports
+generated vendor bundle failures and unavailable project analyzers. The user
+approved a one-release exception on November 1, 2026 ("okay deploy that bypass
+any blocks"). For this performance release only, those shared quality findings
+are warnings; they are not passing results. Focused tests, custom lint, and Caddy
+validation remain required. The temporary repository exception is removed after
+publication; the original quality policy applies to subsequent work.
+
+An alternating three-run comparison with 50ms response delay and a 10Mbps
+per-response transfer cap measured median complete-scene startup of 3.382s
+before and 2.740s after (19% faster). Parallel responses did not share the cap;
+this is a controlled local transfer experiment, not a whole-connection mobile
+network simulation. Unthrottled localhost comparisons did not show a consistent
+full-scene improvement. Disabling shader diagnostics did not improve startup
+and was reverted; diagnostics remain enabled.
+
 ## Portfolio analytics
 
 PostHog Web Analytics uses a separate free organization, **Younes Benketira Portfolio**, and project `691928`. Open https://us.posthog.com/project/691928/web to see visits, unique visitors, referrers, campaigns, countries, and devices. CoachDiff data remains in its own organization. The free allowance is 1 million analytics events per month; no payment method was added.

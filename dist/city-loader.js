@@ -18,7 +18,7 @@ export function prepareSurroundings() {
       else if (data.meshes) finish(null, data);
       else progress('city', data.progress);
     };
-    const url = new URL('./data/algiers-context.json', document.baseURI).href;
+    const url = new URL(CITY_DATA_URL, document.baseURI).href;
     worker.postMessage({ url });
   });
   return preparation;

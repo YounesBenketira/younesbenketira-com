@@ -1,0 +1,124 @@
+[
+  {
+    "glStats": {
+      "texImage2D": {
+        "time": 0,
+        "count": 16
+      },
+      "bufferData": {
+        "time": 93.19999998435378,
+        "count": 583
+      },
+      "compileShader": {
+        "time": 0,
+        "count": 82
+      },
+      "linkProgram": {
+        "time": 0,
+        "count": 41
+      },
+      "getProgramParameter": {
+        "time": 2.4999999962747097,
+        "count": 111
+      },
+      "getUniformLocation": {
+        "time": 0.7000000029802322,
+        "count": 725
+      },
+      "drawElements": {
+        "time": 0.09999999776482582,
+        "count": 219
+      },
+      "clear": {
+        "time": 0,
+        "count": 12
+      },
+      "drawArrays": {
+        "time": 0,
+        "count": 125
+      },
+      "drawElementsInstanced": {
+        "time": 0.09999999776482582,
+        "count": 172
+      }
+    },
+    "slowGL": [
+      {
+        "name": "bufferData",
+        "start": 1064.8999999985099,
+        "elapsed": 77.60000000149012
+      }
+    ],
+    "marks": [
+      {
+        "name": "city-ready",
+        "time": 982.6000000014901
+      },
+      {
+        "name": "scene-ready",
+        "time": 1267.6000000014901
+      }
+    ]
+  },
+  {
+    "glStats": {
+      "texImage2D": {
+        "time": 0,
+        "count": 16
+      },
+      "bufferData": {
+        "time": 22.69999999552965,
+        "count": 583
+      },
+      "compileShader": {
+        "time": 0.09999999776482582,
+        "count": 82
+      },
+      "linkProgram": {
+        "time": 0,
+        "count": 41
+      },
+      "getProgramParameter": {
+        "time": 5.200000010430813,
+        "count": 111
+      },
+      "getUniformLocation": {
+        "time": 0.4000000022351742,
+        "count": 725
+      },
+      "drawElements": {
+        "time": 0.10000000149011612,
+        "count": 219
+      },
+      "clear": {
+        "time": 0,
+        "count": 12
+      },
+      "drawArrays": {
+        "time": 0,
+        "count": 125
+      },
+      "drawElementsInstanced": {
+        "time": 0.20000000298023224,
+        "count": 172
+      }
+    },
+    "slowGL": [
+      {
+        "name": "bufferData",
+        "start": 709.3000000007451,
+        "elapsed": 12.199999999254942
+      }
+    ],
+    "marks": [
+      {
+        "name": "city-ready",
+        "time": 598.9000000022352
+      },
+      {
+        "name": "scene-ready",
+        "time": 1428.6000000014901
+      }
+    ]
+  }
+]

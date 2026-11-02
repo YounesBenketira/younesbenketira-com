@@ -1,5 +1,7 @@
 import { buildStyles } from './build-styles.mjs';
 import { buildPreloads } from './build-preloads.mjs';
+import { buildCityData } from './build-city-data.mjs';
+import { buildCompression } from './build-compression.mjs';
 import { build } from 'esbuild';
 import sharp from 'sharp';
 import wawoff2 from 'wawoff2';
@@ -19,7 +21,8 @@ const root = path.resolve('dist');
 const output = path.join(root, 'bundles');
 await mkdir(output, { recursive: true });
 const previous = await readdir(output);
-await Promise.all(previous.filter(name => /\.(js|css)$/.test(name)).map(name => unlink(path.join(output, name))));
+await Promise.all(previous.filter(name => /\.(js|css|json)(\.(br|gz))?$/.test(name)).map(name => unlink(path.join(output, name))));
+const cityDataURL = await buildCityData(root, output);
 const stoneSource = path.join(root, 'textures/ivory-limestone.png');
 const stoneTarget = path.join(root, 'textures/ivory-limestone.webp');
 await sharp(stoneSource).webp({ quality: 92, effort: 6 }).toFile(stoneTarget);
@@ -40,6 +43,7 @@ const workerURL = './bundles/' + path.basename(workerPath);
 const app = await build({ ...options, entryPoints: ['dist/boot.js'], splitting: true,
   define: {
     CITY_WORKER_URL: JSON.stringify(workerURL),
+    CITY_DATA_URL: JSON.stringify(cityDataURL),
     POSTHOG_PROJECT_KEY: JSON.stringify(analyticsKey),
     POSTHOG_API_HOST: JSON.stringify(analyticsHost),
   },
@@ -63,3 +67,4 @@ for (const name of await readdir(output)) {
   await writeFile(file, normalized);
 }
 console.log('Built optimized portfolio assets.');
+await buildCompression(output);

@@ -1,0 +1,395 @@
+{
+  "conditions": "Alternating fresh contexts; Chromium desktop 1440x900; localhost with 50 ms response delay and 10 Mbps per-response transfer cap (parallel responses do not share a cap); baseline live gzip, optimized precompressed Brotli; one shared browser/GPU cache; full scene-ready milestone",
+  "results": [
+    {
+      "variant": "baseline",
+      "run": 0,
+      "errors": [],
+      "sceneReady": 2986.400000002235,
+      "cityReady": 2710.60000000149,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8870/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 360.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 924.4000000022352
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/boot-G3PGGIV3.js",
+          "bytes": 1886,
+          "end": 218.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-CVCCY66B.js",
+          "bytes": 164189,
+          "end": 391.5
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 6003,
+          "end": 218.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 233.69999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 297.1000000014901
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-S66TYPK4.js",
+          "bytes": 879,
+          "end": 297.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 375.69999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 422.5
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 71336,
+          "end": 469.69999999925494
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "run": 0,
+      "errors": [],
+      "sceneReady": 2695.400000002235,
+      "cityReady": 1933.9000000022352,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8871/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 276.80000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/boot-7GNICBMU.js",
+          "bytes": 1636,
+          "end": 136.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8871/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 732.6000000014901
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-KA3GI3C3.js",
+          "bytes": 809,
+          "end": 136
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-LQVHG2QW.js",
+          "bytes": 134820,
+          "end": 261.1000000014901
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 5309,
+          "end": 135.69999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8871/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 150.90000000223517
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 214.10000000149012
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 214.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 59461,
+          "end": 292.6000000014901
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 337.80000000074506
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "run": 1,
+      "errors": [],
+      "sceneReady": 3514.39999999851,
+      "cityReady": 2691.89999999851,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8870/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 289.3999999985099
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/boot-G3PGGIV3.js",
+          "bytes": 1886,
+          "end": 148.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-CVCCY66B.js",
+          "bytes": 164189,
+          "end": 321.5
+        },
+        {
+          "url": "http://127.0.0.1:8870/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 904
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 6003,
+          "end": 147.89999999850988
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 226.80000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 164.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-S66TYPK4.js",
+          "bytes": 879,
+          "end": 227
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 306.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 351.69999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 71336,
+          "end": 398
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "run": 1,
+      "errors": [],
+      "sceneReady": 2740.10000000149,
+      "cityReady": 1946.6000000014901,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8871/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 275.20000000298023
+        },
+        {
+          "url": "http://127.0.0.1:8871/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 727.7000000029802
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/boot-7GNICBMU.js",
+          "bytes": 1636,
+          "end": 133.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-KA3GI3C3.js",
+          "bytes": 809,
+          "end": 133.5
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-LQVHG2QW.js",
+          "bytes": 134820,
+          "end": 259.9000000022352
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 5309,
+          "end": 133.10000000149012
+        },
+        {
+          "url": "http://127.0.0.1:8871/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 148.40000000223517
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 213.10000000149012
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 213.20000000298023
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 59461,
+          "end": 290.20000000298023
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 336.80000000074506
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "run": 2,
+      "errors": [],
+      "sceneReady": 3382.400000002235,
+      "cityReady": 2618.10000000149,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8870/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 279.80000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 859.9000000022352
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/boot-G3PGGIV3.js",
+          "bytes": 1886,
+          "end": 139.40000000223517
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-CVCCY66B.js",
+          "bytes": 164189,
+          "end": 311.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 6003,
+          "end": 139.40000000223517
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 216.40000000223517
+        },
+        {
+          "url": "http://127.0.0.1:8870/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 154.5
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/chunk-S66TYPK4.js",
+          "bytes": 879,
+          "end": 216.70000000298023
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 295.30000000074506
+        },
+        {
+          "url": "http://127.0.0.1:8870/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 342.70000000298023
+        },
+        {
+          "url": "http://127.0.0.1:8870/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 71336,
+          "end": 386.1000000014901
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "run": 2,
+      "errors": [],
+      "sceneReady": 2746.199999999255,
+      "cityReady": 1993.5,
+      "loaderVisible": false,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8871/fonts/GreatVibes-Regular.woff2",
+          "bytes": 162272,
+          "end": 285.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8871/textures/ivory-limestone.webp",
+          "bytes": 553392,
+          "end": 820
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/boot-7GNICBMU.js",
+          "bytes": 1636,
+          "end": 142.59999999776483
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/styles-4cabbad03db47dac.css",
+          "bytes": 5309,
+          "end": 142.09999999776483
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-KA3GI3C3.js",
+          "bytes": 809,
+          "end": 142.39999999850988
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/chunk-LQVHG2QW.js",
+          "bytes": 134820,
+          "end": 269.29999999701977
+        },
+        {
+          "url": "http://127.0.0.1:8871/mila-player.js?v=midnight-inline-1",
+          "bytes": 1372,
+          "end": 143
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/coachdiff-icon.svg",
+          "bytes": 794,
+          "end": 221.19999999925494
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/minaret-pattern.svg",
+          "bytes": 1782,
+          "end": 221.29999999701977
+        },
+        {
+          "url": "http://127.0.0.1:8871/bundles/city-worker-LGK3HUPO.js",
+          "bytes": 59461,
+          "end": 300
+        },
+        {
+          "url": "http://127.0.0.1:8871/images/flighthub-icon-white.webp",
+          "bytes": 17704,
+          "end": 347.29999999701977
+        }
+      ]
+    }
+  ]
+}
